@@ -37,8 +37,8 @@ export default class ApplicationRouter extends React.Component<{}> {
           <ApplicationDrawer>
             <Switch>
               <AuthenticatedRoute exact path="/" component={HomePage} />
-              <Route path="/feed" component={FeedPage} />
-              <AuthenticatedRoute path="/catch" component={CatchPage} />
+              <Route path="/edetabel" component={FeedPage} />
+              <AuthenticatedRoute path="/ennusta" component={CatchPage} />
               <UnauthenticatedRoute path="/sign_in" component={SignInPage} />
               <UnauthenticatedRoute path="/sign_up" component={SignUpPage} />
             </Switch>

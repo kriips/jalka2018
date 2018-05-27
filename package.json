@@ -1,19 +1,9 @@
 {
-  "name": "pokedex",
+  "name": "jalka2018",
   "version": "1.0.0",
-  "description": "Application for ElixirConf EU GraphQL workshop",
+  "description": "Application for WC 2018 predictions",
   "main": "./web/static/js/app.js",
-  "repository": "https://github.com/ukasiu/pokedex-elixirconfeu-workshops.git",
-  "contributors": [
-    {
-      "name": "Stanisław Chmiela",
-      "url": "https://github.com/sjchmiela"
-    },
-    {
-      "name": "Łukasz Gurdek",
-      "url": "https://github.com/ukasiu"
-    }
-  ],
+  "repository": "https://github.com/kriips/jalka2018.git",
   "scripts": {
     "webpack-watch":
       "webpack --watch-stdin --progress --color --mode development --config webpack.dev.js",

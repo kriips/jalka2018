@@ -91,7 +91,7 @@ defmodule PokedexWeb.Schema.Trainership do
     field(:viewer, :viewer, resolve: fn _, _ -> {:ok, %{}} end)
   end
 
-  object :traninership_subscriptions do
+  object :trainership_subscriptions do
     field :events_feed, :event do
       config(fn _, _ ->
         {:ok, topic: "event_feed"}

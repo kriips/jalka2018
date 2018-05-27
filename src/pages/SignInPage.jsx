@@ -71,18 +71,18 @@ class SignInPage extends React.Component<PropsType, StateType> {
     return (
       <Grid container justify="center">
         <Grid item xs={12} sm={6} md={4} lg={4} xl={2}>
-          <PaperSheet headline="Sign in">
+          <PaperSheet headline="Sisene">
             {this.maybeRenderError()}
             <form onSubmit={this.handleSubmit}>
               <FormControl fullWidth margin="dense">
                 <TextField
-                  label="Username"
+                  label="Nimi"
                   disabled={this.state.processing}
                   onChange={this.handleUsernameChange}
                 />
               </FormControl>
               <FormControl fullWidth margin="dense">
-                <InputLabel htmlFor="password">Password</InputLabel>
+                <InputLabel htmlFor="password">Parool</InputLabel>
                 <PasswordInput
                   id="password"
                   value={this.state.password}
@@ -99,13 +99,13 @@ class SignInPage extends React.Component<PropsType, StateType> {
                   onClick={this.handleSubmit}
                   disabled={this.state.processing}
                 >
-                  Sign in
+                  Sisene
                 </Button>
               </FormControl>
             </form>
             <Grid item>
               <LinkButton size="small" color="secondary" href="/sign_up">
-                Sign up
+                Registreeru
               </LinkButton>
             </Grid>
           </PaperSheet>

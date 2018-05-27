@@ -4,19 +4,19 @@ import * as React from "react";
 import { graphql } from "react-relay";
 import Home from "@material-ui/icons/Home";
 import { withRouter } from "react-router-dom";
-import RssFeed from "@material-ui/icons/RssFeed";
+import ImportExport from "@material-ui/icons/ImportExport";
+import Casino from "@material-ui/icons/Casino";
 import type { ContextRouter } from "react-router-dom";
 import BottomNavigation from "material-ui/BottomNavigation";
 import BottomNavigationAction from "material-ui/BottomNavigation/BottomNavigationAction";
 
 import SimpleButton from "../atoms/SimpleButton";
-import PokeballIcon from "../atoms/PokeballIcon";
 import withRelayData from "../services/withRelayData";
 
 const routes = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/catch", icon: PokeballIcon, label: "Catch" },
-  { href: "/feed", icon: RssFeed, label: "Feed" },
+  { href: "/", icon: Home, label: "Koju" },
+  { href: "/ennusta", icon: Casino, label: "Ennusta" },
+  { href: "/edetabel", icon: ImportExport, label: "Edetabel" },
 ];
 
 const query = graphql`

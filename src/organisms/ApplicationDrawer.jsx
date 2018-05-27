@@ -47,7 +47,7 @@ const ConnectedSpeciesList = withRelayData(
 
 const SignOutButton = ({ onClick }: () => void) => (
   <SimpleButton IconComponent={ExitToApp} onClick={onClick}>
-    Sign out
+    Välju
   </SimpleButton>
 );
 

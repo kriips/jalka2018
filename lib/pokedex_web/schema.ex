@@ -41,7 +41,7 @@ defmodule PokedexWeb.Schema do
   end
 
   subscription do
-    import_fields(:traninership_subscriptions)
+    import_fields(:trainership_subscriptions)
   end
 
   def plugins do

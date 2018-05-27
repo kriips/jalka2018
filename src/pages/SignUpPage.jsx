@@ -80,11 +80,11 @@ class SignUpPage extends React.Component<PropsType, StateType> {
     return (
       <Grid container justify="center">
         <Grid item xs={12} sm={6} md={4} lg={4} xl={2}>
-          <PaperSheet headline="Sign up">
+          <PaperSheet headline="Registeeru">
             {this.maybeRenderError()}
             <FormControl fullWidth margin="dense">
               <TextField
-                label="Username"
+                label="Nimi"
                 error={!!fieldsErrors.username}
                 disabled={this.state.processing}
                 helperText={fieldsErrors.username}
@@ -93,7 +93,7 @@ class SignUpPage extends React.Component<PropsType, StateType> {
             </FormControl>
             <FormControl fullWidth margin="dense">
               <InputLabel error={!!fieldsErrors.password} htmlFor="password">
-                Password
+                Parool
               </InputLabel>
               <PasswordInput
                 id="password"
@@ -114,12 +114,12 @@ class SignUpPage extends React.Component<PropsType, StateType> {
                 onClick={this.handleSubmit}
                 disabled={this.state.processing}
               >
-                Sign up
+                Registreeru
               </Button>
             </FormControl>
             <Grid item>
               <LinkButton size="small" color="secondary" href="/sign_in">
-                Sign in
+                Sisene
               </LinkButton>
             </Grid>
           </PaperSheet>
