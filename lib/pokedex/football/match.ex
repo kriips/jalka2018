@@ -11,6 +11,7 @@ defmodule Pokedex.Football.Match do
     field(:away_result, :integer)
     field(:date, :naive_datetime)
     field(:finished, :boolean)
+    has_many(:group_prediction, Pokedex.Football.GroupPrediction)
 
     timestamps()
   end
