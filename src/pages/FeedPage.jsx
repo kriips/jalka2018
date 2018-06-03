@@ -63,7 +63,7 @@ class FeedPage extends React.Component<FeedPageQuery> {
       <PaperSheet headline="Event Feed">
         <List>
           {this.props.viewer.events.edges.map(edge => (
-            <EventRow key={edge.node.id} event={edge.node} />
+            <EventRow xkey={edge.node.id} event={edge.node} />
           ))}
         </List>
       </PaperSheet>

@@ -18,3 +18,21 @@ if Code.ensure_compiled?(Pokedex.Accounts.AllowedUser) &&
     |> Pokedex.Repo.insert!()
   end)
 end
+
+if Code.ensure_compiled?(Pokedex.Football.Team) &&
+     Pokedex.Football.Team |> Pokedex.Repo.aggregate(:count, :id) == 0 do
+  Enum.each(Jason.decode!(File.read!('priv/repo/teams.json')), fn attrs ->
+    %Pokedex.Football.Team{}
+    |> Pokedex.Football.Team.changeset(attrs)
+    |> Pokedex.Repo.insert!()
+  end)
+end
+
+if Code.ensure_compiled?(Pokedex.Football.Match) &&
+     Pokedex.Football.Match |> Pokedex.Repo.aggregate(:count, :id) == 0 do
+  Enum.each(Jason.decode!(File.read!('priv/repo/matches.json')), fn attrs ->
+    %Pokedex.Football.Match{}
+    |> Pokedex.Football.Match.changeset(attrs)
+    |> Pokedex.Repo.insert!()
+  end)
+end

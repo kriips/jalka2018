@@ -19,7 +19,7 @@ defmodule PokedexWeb.Resolvers.AccountsResolver do
   end
 
   def create_user(args, _) do
-    case Pokedex.Trainership.create_trainer(args) do
+    case Pokedex.Accounts.create_user(args) do
       {:ok, user} ->
         {:ok, %{user: user}}
 

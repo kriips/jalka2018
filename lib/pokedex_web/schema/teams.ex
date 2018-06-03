@@ -12,7 +12,7 @@ defmodule PokedexWeb.Schema.Teams do
     field(:emojiString, :string)
   end
 
-  # connection(node_type: :species)
+   connection(node_type: :team)
 
   # object :pokemons do
   #   connection field(:species, node_type: :species) do
