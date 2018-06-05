@@ -24,12 +24,16 @@ defmodule PokedexWeb.Schema do
   end
 
   import_types(PokedexWeb.Schema.Accounts)
+  import_types(PokedexWeb.Schema.Teams)
+  import_types(PokedexWeb.Schema.Matches)
   import_types(PokedexWeb.Schema.Pokemons)
   import_types(PokedexWeb.Schema.Trainership)
   import_types(PokedexWeb.Schema.Relay)
 
   query do
     import_fields(:accounts)
+    import_fields(:teams)
+    import_fields(:matches)
     import_fields(:pokemons)
     import_fields(:relay)
     import_fields(:trainership)

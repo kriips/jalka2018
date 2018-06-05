@@ -4,7 +4,7 @@ defmodule PokedexWeb.Schema.Teams do
 
   alias PokedexWeb.Resolvers.TeamsResolver
 
-  node object(:species) do
+  node object(:team) do
     field(:name, :string)
     field(:fifaCode, :string)
     field(:flag, :string)
@@ -12,16 +12,16 @@ defmodule PokedexWeb.Schema.Teams do
     field(:emojiString, :string)
   end
 
-   connection(node_type: :team)
+  connection(node_type: :team)
 
-  # object :pokemons do
-  #   connection field(:species, node_type: :species) do
-  #     arg(:search_term, :string)
-  #     resolve(&PokemonsResolver.list_species/2)
-  #   end
+  object :teams do
+    connection field(:teams, node_type: :team) do
+      arg(:search_term, :string)
+      resolve(&TeamsResolver.list_teams/2)
+    end
 
-  #   field(:species_array, list_of(:species)) do
-  #     resolve(&PokemonsResolver.list_species/2)
-  #   end
-  # end
+    field(:teams_array, list_of(:teams)) do
+      resolve(&TeamsResolver.list_teams/2)
+    end
+  end
 end

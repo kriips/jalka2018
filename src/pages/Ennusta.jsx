@@ -33,7 +33,7 @@ const styles = {
   },
 };
 
-class CatchPage extends React.Component<PropsType, StateType> {
+class Ennusta extends React.Component<PropsType, StateType> {
   state = {
     processing: false,
     tokenInput: "",
@@ -90,18 +90,7 @@ class CatchPage extends React.Component<PropsType, StateType> {
     return (
       <Grid container justify="center" spacing={24}>
         <Grid item xs={12} sm={6} md={5} lg={4}>
-          <PaperSheet headline="Scan the nest QR code">
-            <QrReader
-              onScan={this.handleToken}
-              onError={this.handleScannerError}
-              className={this.props.classes.qrReader}
-              delay={this.state.processing ? false : 500}
-            />
-            {this.maybeRenderError()}
-          </PaperSheet>
-        </Grid>
-        <Grid item xs={12} sm={6} md={5} lg={4}>
-          <PaperSheet headline="Enter the nest token">
+          <PaperSheet headline="Ennusta alagrupimängude tulemusi">
             {this.maybeRenderError()}
             <form onSubmit={this.handleSubmit}>
               <FormControl fullWidth margin="dense">
@@ -133,4 +122,4 @@ class CatchPage extends React.Component<PropsType, StateType> {
   }
 }
 
-export default withStyles(styles)(withRelayEnvironmentContext(CatchPage));
+export default withStyles(styles)(withRelayEnvironmentContext(Ennusta));

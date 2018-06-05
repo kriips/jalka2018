@@ -18,7 +18,7 @@ import RawApplicationDrawer from "./organisms/ApplicationDrawer";
 
 import HomePage from "./pages/HomePage";
 import FeedPage from "./pages/FeedPage";
-import CatchPage from "./pages/CatchPage";
+import CatchPage from "./pages/Ennusta";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 

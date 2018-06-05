@@ -2,8 +2,9 @@ defmodule PokedexWeb.Schema.Relay do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 
-  alias Pokedex.{Pokemons, Accounts, Trainership}
+  alias Pokedex.{Pokemons, Accounts, Trainership, Football}
   alias Pokemons.{Species}
+  alias Football.{Team, Match}
   alias Accounts.{User}
   alias Trainership.{Pokemon, Trainer}
 
@@ -13,6 +14,8 @@ defmodule PokedexWeb.Schema.Relay do
         %{type: :pokemon, id: id}, _ -> {:ok, Trainership.get_pokemon!(id)}
         %{type: :trainer, id: id}, _ -> {:ok, Trainership.get_trainer!(id)}
         %{type: :species, id: id}, _ -> {:ok, Pokemons.get_species!(id)}
+        %{type: :teams, id: id}, _ -> {:ok, Teams.get_teams!(id)}
+        %{type: :matches, id: id}, _ -> {:ok, Matches.get_matches!(id)}
         %{type: :user, id: id}, _ -> {:ok, Accounts.get_user!(id)}
         %{type: :edge_released, id: id}, _ -> {:ok, %{pokemon: Trainership.get_pokemon!(id)}}
         %{type: :edge_caught, id: id}, _ -> {:ok, %{pokemon: Trainership.get_pokemon!(id)}}
@@ -31,6 +34,12 @@ defmodule PokedexWeb.Schema.Relay do
 
       %Species{}, _ ->
         :species
+
+      %Match{}, _ ->
+        :matches
+
+      %Team{}, _ ->
+        :teams
 
       %User{}, _ ->
         :user
