@@ -2,14 +2,16 @@ defmodule Pokedex.Football.Team do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Pokedex.Repo
+  alias Pokedex.Football.PlayoffPrediction
+
   schema "teams" do
     field(:name, :string)
     field(:fifaCode, :string)
     field(:flag, :string)
     field(:emoji, :string)
     field(:emojiString, :string)
-#    has_many(:home_match, Pokedex.Football.Match, foreign_key: :home_team)
-#    has_many(:away_match, Pokedex.Football.Match, foreign_key: :away_team)
+    many_to_many :playoff_predictions, PlayoffPrediction, join_through: "playoff_predictions_teams"
 
     timestamps()
   end
@@ -19,5 +21,7 @@ defmodule Pokedex.Football.Team do
     team
     |> cast(attrs, [:name, :fifaCode, :flag, :emoji, :emojiString])
   end
+
+  def get_team!(id), do: Repo.get!(Team, id)
 
 end

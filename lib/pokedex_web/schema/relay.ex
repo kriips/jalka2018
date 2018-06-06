@@ -14,8 +14,8 @@ defmodule PokedexWeb.Schema.Relay do
         %{type: :pokemon, id: id}, _ -> {:ok, Trainership.get_pokemon!(id)}
         %{type: :trainer, id: id}, _ -> {:ok, Trainership.get_trainer!(id)}
         %{type: :species, id: id}, _ -> {:ok, Pokemons.get_species!(id)}
-        %{type: :teams, id: id}, _ -> {:ok, Teams.get_teams!(id)}
-        %{type: :matches, id: id}, _ -> {:ok, Matches.get_matches!(id)}
+        %{type: :teams, id: id}, _ -> {:ok, Team.get_team!(id)}
+        %{type: :matches, id: id}, _ -> {:ok, Match.get_match!(id)}
         %{type: :user, id: id}, _ -> {:ok, Accounts.get_user!(id)}
         %{type: :edge_released, id: id}, _ -> {:ok, %{pokemon: Trainership.get_pokemon!(id)}}
         %{type: :edge_caught, id: id}, _ -> {:ok, %{pokemon: Trainership.get_pokemon!(id)}}

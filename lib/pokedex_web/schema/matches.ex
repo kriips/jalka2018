@@ -2,13 +2,15 @@ defmodule PokedexWeb.Schema.Matches do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1, on_load: 2]
+
   alias PokedexWeb.Resolvers.MatchesResolver
 
   node object(:match) do
     field(:group, :string)
     field(:name, :string)
-    field(:home_team, :integer)
-    field(:away_team, :integer)
+    field(:home_team, :team, resolve: dataloader(:repo))
+    field(:away_team, :team, resolve: dataloader(:repo))
     field(:home_result, :integer)
     field(:away_result, :integer)
     field(:date, :datetime)
