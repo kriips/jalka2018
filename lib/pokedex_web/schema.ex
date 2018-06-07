@@ -26,6 +26,7 @@ defmodule PokedexWeb.Schema do
   import_types(PokedexWeb.Schema.Accounts)
   import_types(PokedexWeb.Schema.Teams)
   import_types(PokedexWeb.Schema.Matches)
+  import_types(PokedexWeb.Schema.Predictions)
   import_types(PokedexWeb.Schema.Pokemons)
   import_types(PokedexWeb.Schema.Trainership)
   import_types(PokedexWeb.Schema.Relay)
@@ -34,6 +35,8 @@ defmodule PokedexWeb.Schema do
     import_fields(:accounts)
     import_fields(:teams)
     import_fields(:matches)
+    import_fields(:group_predictions)
+    import_fields(:playoff_predictions)
     import_fields(:pokemons)
     import_fields(:relay)
     import_fields(:trainership)
@@ -42,6 +45,7 @@ defmodule PokedexWeb.Schema do
   mutation do
     import_fields(:accounts_mutations)
     import_fields(:trainership_mutations)
+    import_fields(:group_prediction_mutations)
   end
 
   subscription do

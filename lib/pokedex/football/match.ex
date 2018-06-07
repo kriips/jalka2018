@@ -8,9 +8,7 @@ defmodule Pokedex.Football.Match do
   schema "matches" do
     field(:group, :string)
     field(:name, :string)
-#    field(:home_team, :integer)
     belongs_to(:home_team, Team)
-#    field(:away_team, :integer)
     belongs_to(:away_team, Team)
     field(:home_result, :integer)
     field(:away_result, :integer)

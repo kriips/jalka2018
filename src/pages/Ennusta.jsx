@@ -8,13 +8,13 @@ import FormControl from "material-ui/Form/FormControl";
 
 import type { ContextRouter } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
-import QrReader from "react-qr-reader";
 
 import PaperSheet from "../atoms/PaperSheet";
 import ErrorMessage from "../atoms/ErrorMessage";
 import catchPokemon from "../services/catchPokemon";
 import type { ContextType } from "../services/withRelayEnvironmentContext";
 import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
+import { UserPrediction } from "../organisms/UserPrediction";
 
 type PropsType = ContextRouter &
   ContextType & {
@@ -89,9 +89,10 @@ class Ennusta extends React.Component<PropsType, StateType> {
   render() {
     return (
       <Grid container justify="center" spacing={24}>
-        <Grid item xs={12} sm={6} md={5} lg={4}>
+        <Grid item xs={10} sm={10} md={10} lg={10}>
           <PaperSheet headline="Ennusta alagrupimängude tulemusi">
             {this.maybeRenderError()}
+            <UserPrediction />
             <form onSubmit={this.handleSubmit}>
               <FormControl fullWidth margin="dense">
                 <TextField

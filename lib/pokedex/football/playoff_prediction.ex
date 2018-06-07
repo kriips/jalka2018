@@ -1,7 +1,9 @@
 defmodule Pokedex.Football.PlayoffPrediction do
   use Ecto.Schema
   import Ecto.Changeset
+
   alias Pokedex.Football.Team
+  alias Pokedex.Repo
 
   schema "playoff_prediction" do
     belongs_to(:user, Pokedex.Accounts.User)
@@ -16,5 +18,7 @@ defmodule Pokedex.Football.PlayoffPrediction do
     group_prediction
     |> cast(attrs, [:user, :match, :prediction])
   end
+
+  def get_playoff_prediction!(id), do: Repo.get!(PlayoffPrediction, id)
 
 end

@@ -13,7 +13,7 @@ export type ContextType = {
 // https://github.com/facebook/flow/commit/b83e553abcce4b73bac16ff1826c04ae0443ec19
 // $FlowFixMe: will fix itself
 const RelayEnvironmentContext = React.createContext({
-  evironment: null,
+  environment: null,
   setToken: () => {},
 });
 

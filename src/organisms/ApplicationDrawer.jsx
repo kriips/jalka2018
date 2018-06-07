@@ -15,7 +15,6 @@ import {
   BottomNavigation,
 } from "../molecules/ApplicationNavigation";
 import ResponsiveDrawer from "../molecules/ResponsiveDrawer";
-import ConnectionSpeciesList from "../organisms/ConnectionSpeciesList";
 import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
 import type { ContextType } from "../services/withRelayEnvironmentContext";
 
@@ -37,13 +36,6 @@ const query = graphql`
     ...ConnectionSpeciesList_query @arguments(searchTerm: $searchTerm)
   }
 `;
-
-const ConnectedSpeciesList = withRelayData(
-  (props: ApplicationDrawerQuery & Object) => (
-    <ConnectionSpeciesList {...props} query={props} />
-  ),
-  query,
-);
 
 const SignOutButton = ({ onClick }: () => void) => (
   <SimpleButton IconComponent={ExitToApp} onClick={onClick}>
@@ -82,19 +74,19 @@ class ApplicationDrawer extends React.PureComponent<PropsType, StateType> {
     </ApplicationBar>
   );
 
-  renderSearchField = () => (
-    <SearchField
-      onChange={speciesListSearchTerm =>
-        this.throttledSetState({ speciesListSearchTerm })
-      }
-    />
-  );
+  // renderSearchField = () => (
+  //   <SearchField
+  //     onChange={speciesListSearchTerm =>
+  //       this.throttledSetState({ speciesListSearchTerm })
+  //     }
+  //   />
+  // );
 
-  renderSpeciesList = () => (
-    <ConnectedSpeciesList
-      variables={{ searchTerm: this.state.speciesListSearchTerm }}
-    />
-  );
+  // renderSpeciesList = () => (
+  //   <ConnectedSpeciesList
+  //     variables={{ searchTerm: this.state.speciesListSearchTerm }}
+  //   />
+  // );
 
   renderBottomNavigation = (props: Object) => (
     <Hidden smUp>
@@ -106,8 +98,8 @@ class ApplicationDrawer extends React.PureComponent<PropsType, StateType> {
     return (
       <ResponsiveDrawer
         renderAppBar={this.renderAppBar}
-        renderDrawerHeader={this.renderSearchField}
-        renderDrawerContent={this.renderSpeciesList}
+        // renderDrawerHeader={this.renderSearchField}
+        // renderDrawerContent={this.renderSpeciesList}
         renderBottomNavigation={this.renderBottomNavigation}
       >
         {this.props.children}

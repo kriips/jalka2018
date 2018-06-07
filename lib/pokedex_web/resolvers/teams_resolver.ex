@@ -8,11 +8,8 @@ defmodule PokedexWeb.Resolvers.TeamsResolver do
   end
 
   def list_teams(args, _) when map_size(args) == 0 do
-    teams =
       Team
-      |> Repo.all()
-
-    {:ok, teams}
+      |> Connection.from_query(&Repo.all/1, args)
   end
 
   def list_teams(%{search_term: term} = args, _) when is_nil(term) == false do

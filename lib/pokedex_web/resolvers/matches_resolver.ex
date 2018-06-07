@@ -8,11 +8,8 @@ defmodule PokedexWeb.Resolvers.MatchesResolver do
   end
 
   def list_matches(args, _) when map_size(args) == 0 do
-    matches =
       Match
-      |> Repo.all()
-
-    {:ok, matches}
+      |> Connection.from_query(&Repo.all/1, args)
   end
 
   def list_matches(%{search_term: term} = args, _) when is_nil(term) == false do

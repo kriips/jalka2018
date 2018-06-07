@@ -24,4 +24,13 @@ defmodule PokedexWeb.Resolvers.GroupPredictionsResolver do
     GroupPrediction
     |> Connection.from_query(&Repo.all/1, args)
   end
+
+
+  def add_group_prediction(%{match_id: match_id, prediction: prediction}, %{context: %{current_user: current_user}})
+      when is_nil(current_user) == false do
+    %GroupPrediction{}
+    |> GroupPrediction.create_changeset(%{user_id: current_user.id, match_id: match_id, prediction: prediction})
+    |> Repo.insert()
+
+  end
 end

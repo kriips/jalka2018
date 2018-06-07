@@ -43,4 +43,22 @@ defmodule PokedexWeb.Schema.Predictions do
       resolve(&PlayoffPredictionsResolver.list_playoff_predictions/2)
     end
   end
+
+
+  object :group_prediction_mutations do
+    payload field(:add_group_prediction) do
+      input do
+        field(:match_id, non_null(:id))
+        field(:prediction, non_null(:string))
+      end
+
+      output do
+        field(:result, :string) do
+          "ok"
+        end
+      end
+
+      resolve(&GroupPredictionsResolver.add_group_prediction/2)
+    end
+  end
 end

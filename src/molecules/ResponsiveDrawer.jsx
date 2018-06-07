@@ -24,8 +24,7 @@ const styles = theme => ({
   appBar: {
     position: "absolute !important",
     [theme.breakpoints.up("md")]: {
-      marginLeft: `${drawerWidth}px`,
-      width: `calc(100% - ${drawerWidth}px) !important`,
+      width: `100% !important`,
     },
   },
   navIconHide: {
@@ -70,8 +69,8 @@ type PropsType = {
   }) => React.Node,
   children?: ?React.Node,
   classes: Object,
-  renderDrawerHeader: () => React.Node,
-  renderDrawerContent: () => React.Node,
+  // renderDrawerHeader: () => React.Node,
+  // renderDrawerContent: () => React.Node,
   renderBottomNavigation?: ({ className: string }) => ?React.Node,
 };
 
@@ -95,15 +94,15 @@ class ResponsiveDrawer extends React.Component<PropsType, StateType> {
       menuIconClassName: this.props.classes.navIconHide,
     });
 
-  renderDrawer = (): React.Node => (
-    <div>
-      <div className={this.props.classes.toolbar}>
-        {this.props.renderDrawerHeader()}
-      </div>
-      <Divider />
-      {this.props.renderDrawerContent()}
-    </div>
-  );
+  // renderDrawer = (): React.Node => (
+  //   <div>
+  //     <div className={this.props.classes.toolbar}>
+  //       {this.props.renderDrawerHeader()}
+  //     </div>
+  //     <Divider />
+  //     {this.props.renderDrawerContent()}
+  //   </div>
+  // );
 
   maybeRenderBottomNavigationPlaceholder = (): ?React.Node =>
     this.props.renderBottomNavigation ? (
@@ -119,32 +118,32 @@ class ResponsiveDrawer extends React.Component<PropsType, StateType> {
 
   render() {
     const { classes } = this.props;
-
-    const drawer = this.renderDrawer();
-
-    const drawerClasses = { paper: classes.drawerPaper };
+    //
+    // const drawer = this.renderDrawer();
+    //
+    // const drawerClasses = { paper: classes.drawerPaper };
 
     return (
       <div className={classes.root}>
         {this.renderAppBar()}
-        <Hidden mdUp>
-          <Drawer
-            variant="temporary"
-            classes={drawerClasses}
-            open={this.state.mobileOpen}
-            onClose={this.handleDrawerToggle}
-            ModalProps={
-              { keepMounted: true } // Better open performance on mobile.
-            }
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden smDown>
-          <Drawer variant="permanent" open classes={drawerClasses}>
-            {drawer}
-          </Drawer>
-        </Hidden>
+        {/*<Hidden mdUp>*/}
+        {/*<Drawer*/}
+        {/*variant="temporary"*/}
+        {/*classes={drawerClasses}*/}
+        {/*open={this.state.mobileOpen}*/}
+        {/*onClose={this.handleDrawerToggle}*/}
+        {/*ModalProps={*/}
+        {/*{ keepMounted: true } // Better open performance on mobile.*/}
+        {/*}*/}
+        {/*>*/}
+        {/*{drawer}*/}
+        {/*</Drawer>*/}
+        {/*</Hidden>*/}
+        {/*<Hidden smDown>*/}
+        {/*<Drawer variant="permanent" open classes={drawerClasses}>*/}
+        {/*{drawer}*/}
+        {/*</Drawer>*/}
+        {/*</Hidden>*/}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
