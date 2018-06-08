@@ -3,7 +3,7 @@
 import * as React from "react";
 import { graphql } from "react-relay";
 import withRelayData from "../services/withRelayData";
-import UserPredictionList from "./UserPredictionList";
+import UserPredictionList from "../molecules/UserPredictionList";
 
 import UserPredictionListQuery from "./__generated__/UserPredictionListQuery";
 
