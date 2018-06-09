@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seltsi jalkaennustus 2018</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://unpkg.com/react-selectize@3.0.1/dist/index.min.css"/>
+
   </head>
 
   <body>

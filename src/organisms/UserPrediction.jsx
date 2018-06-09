@@ -13,6 +13,17 @@ const userPredictionListQuery = graphql`
     me {
       id
     }
+    groupPredictions(first: 1000) {
+      edges {
+        node {
+          match {
+            id
+            name
+          }
+          prediction
+        }
+      }
+    }
     matches(first: 100) {
       edges {
         node {

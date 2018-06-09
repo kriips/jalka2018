@@ -28,7 +28,7 @@ const addGroupPrediction = (
         },
       },
       onCompleted: (response, errors) => {
-        console.log("mutation completed");
+        console.log("mutation completed", { response, errors });
         if (!errors) {
           resolve({ result: response.addGroupPrediction.result });
         } else {

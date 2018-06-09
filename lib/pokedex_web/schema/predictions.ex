@@ -29,6 +29,7 @@ defmodule PokedexWeb.Schema.Predictions do
   node object(:playoff_prediction) do
     field(:user, :user, resolve: dataloader(:repo))
     field(:phase, :integer)
+    field(:teams, :teams, resolve: dataloader(:repo))
   end
 
   connection(node_type: :playoff_prediction)
@@ -54,6 +55,7 @@ defmodule PokedexWeb.Schema.Predictions do
 
       output do
         field :result, :string
+        field :group_prediction, :group_prediction
       end
 
       resolve(&GroupPredictionsResolver.add_group_prediction/2)

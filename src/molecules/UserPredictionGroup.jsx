@@ -11,7 +11,8 @@ export default class UserPredictionGroup extends React.Component<{}> {
         <UserPredictionRow
           group={match.node.group}
           key={match.node.id}
-          matchId={match.node.name}
+          matchId={match.node.id}
+          matchName={match.node.name}
           awayTeam={match.node.awayTeam.name}
           awayTeamId={parseInt(match.node.awayTeam.id)}
           homeTeam={match.node.homeTeam.name}
@@ -20,6 +21,7 @@ export default class UserPredictionGroup extends React.Component<{}> {
           awayEmoji={match.node.awayTeam.emojiString}
           homeEmoji={match.node.homeTeam.emojiString}
           environment={this.props.environment}
+          prediction={this.props.predictions[match.node.name]}
         />,
       );
     });

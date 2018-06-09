@@ -2,9 +2,6 @@
 
 import * as React from "react";
 import Grid from "material-ui/Grid";
-import Button from "material-ui/Button";
-import TextField from "material-ui/TextField";
-import FormControl from "material-ui/Form/FormControl";
 
 import type { ContextRouter } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
@@ -15,6 +12,7 @@ import catchPokemon from "../services/catchPokemon";
 import type { ContextType } from "../services/withRelayEnvironmentContext";
 import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
 import { UserPrediction } from "../organisms/UserPrediction";
+import { PlayoffPrediction } from "../organisms/PlayoffPrediction";
 
 type PropsType = ContextRouter &
   ContextType & {
@@ -93,30 +91,16 @@ class Ennusta extends React.Component<PropsType, StateType> {
           <PaperSheet headline="Ennusta alagrupimängude tulemusi">
             {this.maybeRenderError()}
             <h4>Iga õige tulemus annab kaks punkti</h4>
-            <UserPrediction />
-            {/*<form onSubmit={this.handleSubmit}>*/}
-            {/*<FormControl fullWidth margin="dense">*/}
-            {/*<TextField*/}
-            {/*label="Token"*/}
-            {/*disabled={this.state.processing}*/}
-            {/*onChange={this.handleTokenInputChange}*/}
-            {/*value={this.state.tokenInput}*/}
-            {/*/>*/}
-            {/*</FormControl>*/}
-
-            {/*<FormControl margin="normal" fullWidth>*/}
-            {/*<Button*/}
-            {/*size="large"*/}
-            {/*type="submit"*/}
-            {/*variant="raised"*/}
-            {/*color="secondary"*/}
-            {/*onClick={this.handleSubmit}*/}
-            {/*disabled={this.state.processing}*/}
-            {/*>*/}
-            {/*Catch!*/}
-            {/*</Button>*/}
-            {/*</FormControl>*/}
-            {/*</form>*/}
+            {/*<UserPrediction />*/}
+          </PaperSheet>
+          <PaperSheet headline="Ennusta playoffide tulemusi">
+            {this.maybeRenderError()}
+            <PlayoffPrediction />
+            {/*<h4>Iga õige kaheksandikfinalist 1p</h4>*/}
+            {/*- Iga õige veerandfinalist 2p.*/}
+            {/*- Iga õige poolfinalist 4p.*/}
+            {/*- Iga õige finalist 6p.*/}
+            {/*- Õige võitja 8p.*/}
           </PaperSheet>
         </Grid>
       </Grid>
