@@ -7,10 +7,10 @@ defmodule Pokedex.Football.Team do
 
   schema "teams" do
     field(:name, :string)
-    field(:fifaCode, :string)
+    field(:fifa_code, :string)
     field(:flag, :string)
     field(:emoji, :string)
-    field(:emojiString, :string)
+    field(:emoji_string, :string)
     many_to_many :playoff_predictions, PlayoffPrediction, join_through: "playoff_predictions_teams"
 
     timestamps()
@@ -19,7 +19,7 @@ defmodule Pokedex.Football.Team do
   @doc false
   def changeset(team, attrs) do
     team
-    |> cast(attrs, [:name, :fifaCode, :flag, :emoji, :emojiString])
+    |> cast(attrs, [:name, :fifa_code, :flag, :emoji, :emoji_string])
   end
 
   def get_team!(id), do: Repo.get!(Team, id)

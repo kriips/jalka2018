@@ -6,10 +6,10 @@ defmodule PokedexWeb.Schema.Teams do
 
   node object(:team) do
     field(:name, :string)
-    field(:fifaCode, :string)
+    field(:fifa_code, :string)
     field(:flag, :string)
     field(:emoji, :string)
-    field(:emojiString, :string)
+    field(:emoji_string, :string)
   end
 
   connection(node_type: :team)

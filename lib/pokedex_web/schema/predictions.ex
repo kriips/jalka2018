@@ -53,9 +53,7 @@ defmodule PokedexWeb.Schema.Predictions do
       end
 
       output do
-        field(:result, :string) do
-          "ok"
-        end
+        field :result, :string
       end
 
       resolve(&GroupPredictionsResolver.add_group_prediction/2)

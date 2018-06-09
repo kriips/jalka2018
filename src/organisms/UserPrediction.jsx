@@ -6,6 +6,7 @@ import withRelayData from "../services/withRelayData";
 import UserPredictionList from "../molecules/UserPredictionList";
 
 import UserPredictionListQuery from "./__generated__/UserPredictionListQuery";
+import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
 
 const userPredictionListQuery = graphql`
   query UserPredictionListQuery {
@@ -16,6 +17,7 @@ const userPredictionListQuery = graphql`
       edges {
         node {
           id
+          name
           group
           date {
             iso8601
@@ -23,10 +25,12 @@ const userPredictionListQuery = graphql`
           awayTeam {
             name
             id
+            emojiString
           }
           homeTeam {
             name
             id
+            emojiString
           }
         }
       }
@@ -34,9 +38,11 @@ const userPredictionListQuery = graphql`
   }
 `;
 
-export const UserPrediction = withRelayData(
-  (props: UserPredictionListQuery & Object) => (
-    <UserPredictionList {...props} query={props} />
+export const UserPrediction = withRelayEnvironmentContext(
+  withRelayData(
+    (props: UserPredictionListQuery & Object) => (
+      <UserPredictionList {...props} query={props} />
+    ),
+    userPredictionListQuery,
   ),
-  userPredictionListQuery,
 );

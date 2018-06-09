@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cbc1c4374719dd8ae4098313579a0948
+ * @relayHash 9b2f0399038724bd285c48c8f1f86885
  */
 
 /* eslint-disable */
@@ -18,6 +18,7 @@ export type UserPredictionListQueryResponse = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
+        +name: ?string,
         +group: ?string,
         +date: ?{|
           +iso8601: ?string,
@@ -25,10 +26,12 @@ export type UserPredictionListQueryResponse = {|
         +awayTeam: ?{|
           +name: ?string,
           +id: string,
+          +emojiString: ?string,
         |},
         +homeTeam: ?{|
           +name: ?string,
           +id: string,
+          +emojiString: ?string,
         |},
       |},
     |}>,
@@ -46,6 +49,7 @@ query UserPredictionListQuery {
     edges {
       node {
         id
+        name
         group
         date {
           iso8601
@@ -53,10 +57,12 @@ query UserPredictionListQuery {
         awayTeam {
           name
           id
+          emojiString
         }
         homeTeam {
           name
           id
+          emojiString
         }
       }
     }
@@ -72,17 +78,25 @@ var v0 = {
   "args": null,
   "storageKey": null
 },
-v1 = [
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v2 = [
+  v1,
+  v0,
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "name",
+    "name": "emojiString",
     "args": null,
     "storageKey": null
-  },
-  v0
+  }
 ],
-v2 = [
+v3 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -130,6 +144,7 @@ v2 = [
             "plural": false,
             "selections": [
               v0,
+              v1,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -163,7 +178,7 @@ v2 = [
                 "args": null,
                 "concreteType": "Team",
                 "plural": false,
-                "selections": v1
+                "selections": v2
               },
               {
                 "kind": "LinkedField",
@@ -173,7 +188,7 @@ v2 = [
                 "args": null,
                 "concreteType": "Team",
                 "plural": false,
-                "selections": v1
+                "selections": v2
               }
             ]
           }
@@ -187,7 +202,7 @@ return {
   "operationKind": "query",
   "name": "UserPredictionListQuery",
   "id": null,
-  "text": "query UserPredictionListQuery {\n  me {\n    id\n  }\n  matches(first: 100) {\n    edges {\n      node {\n        id\n        group\n        date {\n          iso8601\n        }\n        awayTeam {\n          name\n          id\n        }\n        homeTeam {\n          name\n          id\n        }\n      }\n    }\n  }\n}\n",
+  "text": "query UserPredictionListQuery {\n  me {\n    id\n  }\n  matches(first: 100) {\n    edges {\n      node {\n        id\n        name\n        group\n        date {\n          iso8601\n        }\n        awayTeam {\n          name\n          id\n          emojiString\n        }\n        homeTeam {\n          name\n          id\n          emojiString\n        }\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -195,15 +210,15 @@ return {
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": v2
+    "selections": v3
   },
   "operation": {
     "kind": "Operation",
     "name": "UserPredictionListQuery",
     "argumentDefinitions": [],
-    "selections": v2
+    "selections": v3
   }
 };
 })();
-(node/*: any*/).hash = '55c28a0b1068b2cb9e7104155980766d';
+(node/*: any*/).hash = 'c6477c4d142696b787c724debbed293e';
 module.exports = node;

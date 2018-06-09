@@ -55,6 +55,6 @@ defmodule Pokedex.Accounts.User do
   end
 
   defp username_not_allowed_error(changeset) do
-    add_error(changeset, :username, "is not valid")
+    add_error(changeset, :username, "peaks olema S! nimekirjast")
   end
 end

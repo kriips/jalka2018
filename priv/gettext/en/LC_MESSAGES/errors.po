@@ -8,18 +8,18 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
+"Language: et\n"
 
 ## From Ecto.Changeset.cast/4
-msgid "can't be blank"
+msgid "ei tohi olla tühi"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-msgid "has already been taken"
+msgid "on juba võetud"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-msgid "is invalid"
+msgid "on vigane"
 msgstr ""
 
 ## From Ecto.Changeset.validate_acceptance/3
@@ -27,19 +27,19 @@ msgid "must be accepted"
 msgstr ""
 
 ## From Ecto.Changeset.validate_format/3
-msgid "has invalid format"
+msgid "on vales formaadis"
 msgstr ""
 
 ## From Ecto.Changeset.validate_subset/3
-msgid "has an invalid entry"
+msgid "on valesti sisestatud"
 msgstr ""
 
 ## From Ecto.Changeset.validate_exclusion/3
-msgid "is reserved"
+msgid "on võetud"
 msgstr ""
 
 ## From Ecto.Changeset.validate_confirmation/3
-msgid "does not match confirmation"
+msgid "ei sobi kinnitusega"
 msgstr ""
 
 ## From Ecto.Changeset.no_assoc_constraint/3
@@ -50,8 +50,8 @@ msgid "are still associated with this entry"
 msgstr ""
 
 ## From Ecto.Changeset.validate_length/3
-msgid "should be %{count} character(s)"
-msgid_plural "should be %{count} character(s)"
+msgid "peaks olema %{count} tähte"
+msgid_plural "peaks olema %{count} tähte"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -60,8 +60,8 @@ msgid_plural "should have %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
+msgid "peaks olema vähemalt %{count} tähte"
+msgid_plural "peaks olema vähemalt %{count} tähte"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -70,8 +70,8 @@ msgid_plural "should have at least %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at most %{count} character(s)"
-msgid_plural "should be at most %{count} character(s)"
+msgid "ei tohi olla rohkem kui %{count} tähte"
+msgid_plural "ei tohi olla rohkem kui %{count} tähte"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -81,17 +81,17 @@ msgstr[0] ""
 msgstr[1] ""
 
 ## From Ecto.Changeset.validate_number/3
-msgid "must be less than %{number}"
+msgid "peab olema vähem kui %{number}"
 msgstr ""
 
-msgid "must be greater than %{number}"
+msgid "peab olema suurem kui %{number}"
 msgstr ""
 
-msgid "must be less than or equal to %{number}"
+msgid "peab olema vähem või võrdne kui %{number}"
 msgstr ""
 
-msgid "must be greater than or equal to %{number}"
+msgid "peab olema suurem või võrdne kui %{number}"
 msgstr ""
 
-msgid "must be equal to %{number}"
+msgid "peab olema võrdne numbriga %{number}"
 msgstr ""

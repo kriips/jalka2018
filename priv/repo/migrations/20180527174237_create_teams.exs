@@ -6,8 +6,8 @@ defmodule Pokedex.Repo.Migrations.CreateTeams do
       add(:name, :string, null: false)
       add(:flag, :string, null: false)
       add(:emoji, :string, null: false)
-      add(:fifaCode, :string, null: false)
-      add(:emojiString, :string, null: false)
+      add(:fifa_code, :string, null: false)
+      add(:emoji_string, :string, null: false)
       timestamps()
     end
 

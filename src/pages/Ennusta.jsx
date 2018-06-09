@@ -92,30 +92,31 @@ class Ennusta extends React.Component<PropsType, StateType> {
         <Grid item xs={10} sm={10} md={10} lg={10}>
           <PaperSheet headline="Ennusta alagrupimängude tulemusi">
             {this.maybeRenderError()}
+            <h4>Iga õige tulemus annab kaks punkti</h4>
             <UserPrediction />
-            <form onSubmit={this.handleSubmit}>
-              <FormControl fullWidth margin="dense">
-                <TextField
-                  label="Token"
-                  disabled={this.state.processing}
-                  onChange={this.handleTokenInputChange}
-                  value={this.state.tokenInput}
-                />
-              </FormControl>
+            {/*<form onSubmit={this.handleSubmit}>*/}
+            {/*<FormControl fullWidth margin="dense">*/}
+            {/*<TextField*/}
+            {/*label="Token"*/}
+            {/*disabled={this.state.processing}*/}
+            {/*onChange={this.handleTokenInputChange}*/}
+            {/*value={this.state.tokenInput}*/}
+            {/*/>*/}
+            {/*</FormControl>*/}
 
-              <FormControl margin="normal" fullWidth>
-                <Button
-                  size="large"
-                  type="submit"
-                  variant="raised"
-                  color="secondary"
-                  onClick={this.handleSubmit}
-                  disabled={this.state.processing}
-                >
-                  Catch!
-                </Button>
-              </FormControl>
-            </form>
+            {/*<FormControl margin="normal" fullWidth>*/}
+            {/*<Button*/}
+            {/*size="large"*/}
+            {/*type="submit"*/}
+            {/*variant="raised"*/}
+            {/*color="secondary"*/}
+            {/*onClick={this.handleSubmit}*/}
+            {/*disabled={this.state.processing}*/}
+            {/*>*/}
+            {/*Catch!*/}
+            {/*</Button>*/}
+            {/*</FormControl>*/}
+            {/*</form>*/}
           </PaperSheet>
         </Grid>
       </Grid>

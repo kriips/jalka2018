@@ -10,10 +10,18 @@ export default class UserPredictionList extends React.Component<{}> {
     let groups = groupBy(matches, match => {
       return match.node.group;
     });
+    let groupElements = [];
     forEach(groups, (matches, group) => {
-      console.log("gr", group);
-      return <UserPredictionGroup key={group} matches={matches} />;
+      groupElements.push(
+        <UserPredictionGroup
+          key={group}
+          group={group}
+          matches={matches}
+          environment={this.props.environment}
+        />,
+      );
     });
+    return groupElements;
   };
 
   render() {
