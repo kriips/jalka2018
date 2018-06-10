@@ -2,7 +2,7 @@ defmodule PokedexWeb.Schema.Matches do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 
-  import Absinthe.Resolution.Helpers, only: [dataloader: 1, on_load: 2]
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   alias PokedexWeb.Resolvers.MatchesResolver
 

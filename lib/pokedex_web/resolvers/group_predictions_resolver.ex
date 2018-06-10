@@ -1,9 +1,8 @@
 defmodule PokedexWeb.Resolvers.GroupPredictionsResolver do
-  import Ecto.Query, only: [where: 2, where: 3, from: 2]
+  import Ecto.Query, only: [where: 2, from: 2]
 
   alias Pokedex.{Repo, Football.GroupPrediction}
   alias Absinthe.Relay.Connection
-  alias Absinthe.Relay
 
   def list_group_predictions(args,  %{context: %{current_user: current_user}}) when map_size(args) == 0 do
     query = from gp in "group_prediction",

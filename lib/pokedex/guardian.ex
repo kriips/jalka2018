@@ -2,7 +2,6 @@ defmodule Pokedex.Guardian do
   use Guardian, otp_app: :pokedex
   alias Pokedex.Accounts
   alias Accounts.User
-  alias Pokedex.Repo
 
   def subject_for_token(%User{id: id}, _claims) do
     {:ok, to_string(id)}

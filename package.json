@@ -11,7 +11,8 @@
       "relay-compiler --src ./src --schema schema.json --extensions js jsx --watch",
     "build":
       "relay-compiler --src ./src --schema schema.json --extensions js jsx && webpack -p --config webpack.prod.js",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "heroku-postbuild": "yarn && yarn run build"
   },
   "lint-staged": {
     "*.{js,jsx,json,scss,css,md}": ["prettier --write", "git add"]
