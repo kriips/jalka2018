@@ -28,7 +28,7 @@ type StateType = {
 };
 
 const query = graphql`
-  query ApplicationDrawerQuery($searchTerm: String) {
+  query ApplicationDrawerQuery {
     me {
       id
     }

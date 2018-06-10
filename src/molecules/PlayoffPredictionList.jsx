@@ -37,7 +37,6 @@ export default class PlayoffPredictionList extends React.Component<{}> {
   };
 
   render() {
-    console.log("preds", this.props);
     return (
       <div>
         {this.renderPhases(

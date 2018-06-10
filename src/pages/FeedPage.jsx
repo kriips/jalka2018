@@ -10,7 +10,7 @@ import PaperSheet from "../atoms/PaperSheet";
 class FeedPage extends React.Component<FeedPageQuery> {
   renderFeed = () => (
     <Grid item xs={12} sm={8} md={6} lg={8} xl={4}>
-      <PaperSheet headline="Event Feed" />
+      <PaperSheet headline="Edetabel" />
     </Grid>
   );
 

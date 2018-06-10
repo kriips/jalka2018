@@ -34,7 +34,7 @@ defmodule PokedexWeb.Resolvers.AccountsResolver do
          {:ok, token, _} <- Pokedex.Guardian.encode_and_sign(user) do
       {:ok, %{user: user, token: token}}
     else
-      _ -> {:error, "Invalid credentials provided"}
+      _ -> {:error, "Valed andmed"}
     end
   end
 
