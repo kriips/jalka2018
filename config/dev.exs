@@ -57,5 +57,5 @@ config :pokedex, Pokedex.Repo,
   pool_size: 10
 
 config :pokedex, Pokedex.Guardian,
-  issuer: "pokedex",
-  secret_key: "a+mIC/64/Dnd8iR5J5+zM5IXeo4XEdr+ayTeWhFZK0oywBnDJLgiHKcyiQGDPuL9"
+       issuer: "pokedex",
+       secret_key: "a+mIC/64/Dnd8iR5J5+zM5IXeo4XEdr+ayTeWhFZK0oywBnDJLgiHKcyiQGDPuL9"

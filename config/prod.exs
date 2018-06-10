@@ -61,6 +61,10 @@ use Mix.Config
 
 #config :pokedex, Pokedex.Repo, adapter: Ecto.Adapters.Postgres
 
+config :pokedex, Pokedex.Guardian,
+       issuer: "pokedex",
+       secret_key: "4yYmXNE6n3elAKHCnCibmmTZeCUToMVUsFygZz5u5HdkTZYri0ylFLgE2EUYRgkP"
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
