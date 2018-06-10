@@ -12,7 +12,6 @@ defmodule PokedexWeb.Resolvers.GroupPredictionsResolver do
   end
 
   def list_group_predictions(args,  %{context: %{current_user: current_user}}) do
-    IO.puts "i am there"
     GroupPrediction
     |> where(user_id: ^current_user.id)
     |> Connection.from_query(&Repo.all/1, args)

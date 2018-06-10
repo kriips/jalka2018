@@ -1,5 +1,5 @@
 defmodule PokedexWeb.Resolvers.PlayoffPredictionsResolver do
-  import Ecto.Query, only: [where: 3, from: 2]
+  import Ecto.Query, only: [where: 2, from: 2]
   alias Pokedex.{Repo, Football.PlayoffPrediction}
   alias Absinthe.Relay.Connection
 
@@ -11,17 +11,9 @@ defmodule PokedexWeb.Resolvers.PlayoffPredictionsResolver do
     {:ok, playoff_predictions}
   end
 
-  def list_playoff_predictions(%{search_term: term} = args, _) when is_nil(term) == false do
-    # This runs the `where` clause even when the term == "",
-    # but as premature optimization is the root of all evil,
-    # I'll leave it like this.
+  def list_playoff_predictions(args,  %{context: %{current_user: current_user}}) do
     PlayoffPrediction
-    |> where([s], like(s.slug, ^"%#{String.replace(term, "%", "\\%")}%"))
-    |> Connection.from_query(&Repo.all/1, args)
-  end
-
-  def list_playoff_predictions(args, _) do
-    PlayoffPrediction
+    |> where(user_id: ^current_user.id)
     |> Connection.from_query(&Repo.all/1, args)
   end
 
