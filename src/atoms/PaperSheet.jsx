@@ -36,10 +36,12 @@ class PaperSheet extends React.Component<PropsType> {
 
   render() {
     return (
-      <Paper className={this.props.classes.root} elevation={4}>
-        {this.renderHeader()}
-        {this.props.children}
-      </Paper>
+      <Typography variant="body2">
+        <Paper className={this.props.classes.root} elevation={4}>
+          {this.renderHeader()}
+          {this.props.children}
+        </Paper>
+      </Typography>
     );
   }
 }
