@@ -27,6 +27,7 @@ defmodule PokedexWeb.Schema.Predictions do
   end
 
   node object(:playoff_prediction) do
+    IO.puts "maybe here 1"
     field(:user, :user, resolve: dataloader(:repo))
     field(:phase, :integer)
     field(:team, :team, resolve: dataloader(:repo))
@@ -36,11 +37,13 @@ defmodule PokedexWeb.Schema.Predictions do
 
   object :playoff_predictions do
     connection field(:playoff_predictions, node_type: :playoff_prediction) do
+      IO.puts "maybe here 2"
       arg(:search_term, :string)
       resolve(&PlayoffPredictionsResolver.list_playoff_predictions/2)
     end
 
     field(:group_predictions_array, list_of(:group_predictions)) do
+      IO.puts "maybe here 3"
       resolve(&PlayoffPredictionsResolver.list_playoff_predictions/2)
     end
   end

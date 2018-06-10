@@ -9,10 +9,10 @@ defmodule PokedexWeb.Schema.Relay do
   object :relay do
     node field do
       resolve(fn
-        %{type: :teams, id: id}, _ -> {:ok, Team.get_team!(id)}
-        %{type: :group_predictions, id: id}, _ -> {:ok, GroupPrediction.get_group_prediction!(id)}
-        %{type: :playfoff_predictions, id: id}, _ -> {:ok, PlayoffPrediction.get_playoff_prediction!(id)}
-        %{type: :matches, id: id}, _ -> {:ok, Match.get_match!(id)}
+        %{type: :team, id: id}, _ -> {:ok, Team.get_team!(id)}
+        %{type: :group_prediction, id: id}, _ -> {:ok, GroupPrediction.get_group_prediction!(id)}
+        %{type: :playfoff_prediction, id: id}, _ -> {:ok, PlayoffPrediction.get_playoff_prediction!(id)}
+        %{type: :match, id: id}, _ -> {:ok, Match.get_match!(id)}
         %{type: :user, id: id}, _ -> {:ok, Accounts.get_user!(id)}
         _, _ -> {:error, "Unknown node ID supplied."}
       end)
@@ -22,16 +22,16 @@ defmodule PokedexWeb.Schema.Relay do
   node interface do
     resolve_type(fn
       %Match{}, _ ->
-        :matches
+        :match
 
       %GroupPrediction{}, _ ->
-        :group_predictions
+        :group_prediction
 
       %PlayoffPrediction{}, _ ->
-        :playoff_predictions
+        :playoff_prediction
 
       %Team{}, _ ->
-        :teams
+        :team
 
       %User{}, _ ->
         :user

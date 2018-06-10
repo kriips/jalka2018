@@ -18,7 +18,9 @@ defmodule Pokedex.Football.GroupPrediction do
     |> cast(attrs, [:user, :match, :prediction])
   end
 
-  def get_group_prediction!(id), do: Repo.get!(GroupPrediction, id)
+  def get_group_prediction!(id) do
+    Repo.get!(GroupPrediction, id)
+  end
 
   @doc false
   def create_changeset(group_prediction, attrs) do

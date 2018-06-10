@@ -11,7 +11,8 @@ defmodule Pokedex.Accounts.User do
     field(:password_hash, :string)
     field(:password, :string, virtual: true)
     field(:username, :string)
-    has_many(:group_prediction, Pokedex.Football.GroupPrediction)
+    has_many(:group_predictions, Pokedex.Football.GroupPrediction)
+    has_many(:playoff_predictions, Pokedex.Football.PlayoffPrediction)
 
     timestamps()
   end

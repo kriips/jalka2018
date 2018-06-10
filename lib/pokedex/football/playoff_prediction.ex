@@ -19,7 +19,10 @@ defmodule Pokedex.Football.PlayoffPrediction do
     |> cast(attrs, [:user, :match, :prediction])
   end
 
-  def get_playoff_prediction!(id), do: Repo.get!(PlayoffPrediction, id)
+  def get_playoff_prediction!(id) do
+    IO.puts "maybe getting here"
+    Repo.get!(PlayoffPrediction, id)
+  end
 
   @doc false
   def create_changeset(playoff_prediction, attrs) do

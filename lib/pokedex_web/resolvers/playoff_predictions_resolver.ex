@@ -4,6 +4,7 @@ defmodule PokedexWeb.Resolvers.PlayoffPredictionsResolver do
   alias Absinthe.Relay.Connection
 
   def list_playoff_predictions(args, _) when map_size(args) == 0 do
+    IO.puts "getting here 1"
     playoff_predictions =
       PlayoffPrediction
       |> Repo.all()
@@ -12,6 +13,7 @@ defmodule PokedexWeb.Resolvers.PlayoffPredictionsResolver do
   end
 
   def list_playoff_predictions(args,  %{context: %{current_user: current_user}}) do
+    IO.puts "getting here 2"
     PlayoffPrediction
     |> where(user_id: ^current_user.id)
     |> Connection.from_query(&Repo.all/1, args)

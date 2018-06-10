@@ -17,7 +17,7 @@ import RelayEnvironmentContext from "./services/RelayEnvironmentContext";
 import RawApplicationDrawer from "./organisms/ApplicationDrawer";
 
 import HomePage from "./pages/HomePage";
-import FeedPage from "./pages/FeedPage";
+import Edetabel from "./pages/Edetabel";
 import CatchPage from "./pages/Ennusta";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -37,7 +37,7 @@ export default class ApplicationRouter extends React.Component<{}> {
           <ApplicationDrawer>
             <Switch>
               <AuthenticatedRoute exact path="/" component={HomePage} />
-              <AuthenticatedRoute path="/edetabel" component={FeedPage} />
+              <AuthenticatedRoute path="/edetabel" component={Edetabel} />
               <AuthenticatedRoute path="/ennusta" component={CatchPage} />
               <UnauthenticatedRoute path="/sign_in" component={SignInPage} />
               <UnauthenticatedRoute path="/sign_up" component={SignUpPage} />
