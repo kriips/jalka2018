@@ -13,7 +13,7 @@ defmodule Pokedex.Guardian do
   end
 
   def resource_from_claims(%{"sub" => sub}) do
-    user = Accounts.get_user!(sub) |> Repo.preload(:trainer)
+    user = Accounts.get_user!(sub)
     {:ok, user}
   end
 

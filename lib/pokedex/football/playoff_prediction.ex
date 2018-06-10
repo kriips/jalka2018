@@ -5,10 +5,10 @@ defmodule Pokedex.Football.PlayoffPrediction do
   alias Pokedex.Football.Team
   alias Pokedex.Repo
 
-  schema "playoff_prediction" do
+  schema "playoff_predictions" do
     belongs_to(:user, Pokedex.Accounts.User)
+    belongs_to(:team, Team)
     field(:phase, :integer)
-    many_to_many :teams, Team, join_through: "playoff_predictions_teams"
 
     timestamps()
   end
@@ -21,4 +21,13 @@ defmodule Pokedex.Football.PlayoffPrediction do
 
   def get_playoff_prediction!(id), do: Repo.get!(PlayoffPrediction, id)
 
+  @doc false
+  def create_changeset(playoff_prediction, attrs) do
+    playoff_prediction
+    |> cast(attrs, [:user_id, :team_id, :phase])
+    |> cast_assoc(:user)
+    |> assoc_constraint(:user)
+    |> cast_assoc(:team)
+    |> assoc_constraint(:team)
+  end
 end

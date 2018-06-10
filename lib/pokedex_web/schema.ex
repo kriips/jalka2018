@@ -27,8 +27,6 @@ defmodule PokedexWeb.Schema do
   import_types(PokedexWeb.Schema.Teams)
   import_types(PokedexWeb.Schema.Matches)
   import_types(PokedexWeb.Schema.Predictions)
-  import_types(PokedexWeb.Schema.Pokemons)
-  import_types(PokedexWeb.Schema.Trainership)
   import_types(PokedexWeb.Schema.Relay)
 
   query do
@@ -37,20 +35,18 @@ defmodule PokedexWeb.Schema do
     import_fields(:matches)
     import_fields(:group_predictions)
     import_fields(:playoff_predictions)
-    import_fields(:pokemons)
     import_fields(:relay)
-    import_fields(:trainership)
   end
 
   mutation do
     import_fields(:accounts_mutations)
-    import_fields(:trainership_mutations)
     import_fields(:group_prediction_mutations)
+    import_fields(:playoff_prediction_mutations)
   end
 
-  subscription do
-    import_fields(:trainership_subscriptions)
-  end
+#  subscription do
+#    import_fields(:trainership_subscriptions)
+#  end
 
   def plugins do
     [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()

@@ -66,7 +66,6 @@ export default class UserPredictionRow extends React.Component<{}> {
   };
 
   getRowIcon = () => {
-    // console.log('pred', {match: this.props.matchId, pred: this.props.prediction});
     if (this.props.prediction) {
       return this.successIcon;
     } else {
@@ -119,42 +118,6 @@ export default class UserPredictionRow extends React.Component<{}> {
           </RadioGroup>
         </Grid>
       </Grid>
-      // <div style={rowStyle}>
-      //   <div style={iconStyle}>
-      //     {this.getRowIcon()}
-      //   </div>
-      //   <div style={boxStyle}>
-      //     <RadioGroup value={this.props.prediction} onChange={this.submitGroupPrediction} horizontal>
-      //       <RadioButton
-      //         value={this.props.homeTeam}
-      //         iconSize={20}
-      //         iconInnerSize={9}
-      //         rootColor={"LightSlateGrey"}
-      //         pointColor={"Navy"}
-      //       >
-      //         {this.props.homeEmoji} {this.props.homeTeam}
-      //       </RadioButton>
-      //       <RadioButton
-      //         value="Viik"
-      //         iconSize={20}
-      //         iconInnerSize={9}
-      //         rootColor={"LightSlateGrey"}
-      //         pointColor={"Navy"}
-      //       >
-      //         Viik
-      //       </RadioButton>
-      //       <RadioButton
-      //         value={this.props.awayTeam}
-      //         iconSize={20}
-      //         iconInnerSize={9}
-      //         rootColor={"LightSlateGrey"}
-      //         pointColor={"Navy"}
-      //       >
-      //         {this.props.awayTeam} {this.props.awayEmoji}
-      //       </RadioButton>
-      //     </RadioGroup>
-      //   </div>
-      // </div>
     );
   }
 }

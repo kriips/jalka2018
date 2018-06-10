@@ -38,8 +38,4 @@ defmodule PokedexWeb.Resolvers.AccountsResolver do
     end
   end
 
-  def get_trainer(%User{trainer: %Ecto.Association.NotLoaded{}} = user, args, info),
-    do: user |> Repo.preload(:trainer) |> get_trainer(args, info)
-
-  def get_trainer(%User{trainer: trainer}, _, _), do: {:ok, trainer}
 end

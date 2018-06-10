@@ -7,7 +7,6 @@ defmodule PokedexWeb.Schema.Accounts do
 
   node object(:user) do
     field(:username, :string)
-    field(:trainer, :trainer, resolve: dataloader(:repo))
   end
 
   connection(node_type: :user)

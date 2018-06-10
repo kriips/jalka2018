@@ -32,8 +32,4 @@ defmodule PokedexWeb.Resolvers.GroupPredictionsResolver do
 
     {:ok, %{"group_prediction" => :group_prediction}}
   end
-
-  def add_group_prediction(%{match_id: match_id, prediction: prediction}, %{context: %{current_user: current_user}}) do
-    IO.puts("Something went wrong with the mutation")
-  end
 end

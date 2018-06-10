@@ -3,8 +3,61 @@
     "__schema": {
       "types": [
         {
+          "possibleTypes": [
+            {
+              "ofType": null,
+              "name": "User",
+              "kind": "OBJECT"
+            },
+            {
+              "ofType": null,
+              "name": "Team",
+              "kind": "OBJECT"
+            },
+            {
+              "ofType": null,
+              "name": "Match",
+              "kind": "OBJECT"
+            },
+            {
+              "ofType": null,
+              "name": "GroupPrediction",
+              "kind": "OBJECT"
+            },
+            {
+              "ofType": null,
+              "name": "PlayoffPrediction",
+              "kind": "OBJECT"
+            }
+          ],
+          "name": "Node",
+          "kind": "INTERFACE",
+          "interfaces": null,
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "id",
+              "isDeprecated": false,
+              "description": "The id of the object.",
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": "An object with an ID"
+        },
+        {
           "possibleTypes": null,
-          "name": "ReleasePokemonPayload",
+          "name": "Matches",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -12,10 +65,77 @@
             {
               "type": {
                 "ofType": null,
-                "name": "EventReleased",
+                "name": "MatchConnection",
                 "kind": "OBJECT"
               },
-              "name": "event",
+              "name": "matches",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": [
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "after",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "before",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "Int",
+                    "kind": "SCALAR"
+                  },
+                  "name": "first",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "Int",
+                    "kind": "SCALAR"
+                  },
+                  "name": "last",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "searchTerm",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "Matches",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "LIST"
+              },
+              "name": "matchesArray",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -27,36 +147,52 @@
         },
         {
           "possibleTypes": null,
-          "name": "UserEdge",
+          "name": "ID",
+          "kind": "SCALAR",
+          "interfaces": null,
+          "inputFields": null,
+          "fields": null,
+          "enumValues": null,
+          "description": "The `ID` scalar type represents a unique identifier, often used to\nrefetch an object or as key for a cache. The ID type appears in a JSON\nresponse as a String; however, it is not intended to be human-readable.\nWhen expected as an input type, any string (such as `\"4\"`) or integer\n(such as `4`) input value will be accepted as an ID."
+        },
+        {
+          "possibleTypes": null,
+          "name": "User",
           "kind": "OBJECT",
-          "interfaces": [],
+          "interfaces": [
+            {
+              "ofType": null,
+              "name": "Node",
+              "kind": "INTERFACE"
+            }
+          ],
           "inputFields": null,
           "fields": [
             {
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "String",
+                  "name": "ID",
                   "kind": "SCALAR"
                 },
                 "name": null,
                 "kind": "NON_NULL"
               },
-              "name": "cursor",
+              "name": "id",
               "isDeprecated": false,
-              "description": "A cursor for use in pagination",
+              "description": "The ID of an object",
               "deprecationReason": null,
               "args": []
             },
             {
               "type": {
                 "ofType": null,
-                "name": "User",
-                "kind": "OBJECT"
+                "name": "String",
+                "kind": "SCALAR"
               },
-              "name": "node",
+              "name": "username",
               "isDeprecated": false,
-              "description": "The item at the end of the edge",
+              "description": null,
               "deprecationReason": null,
               "args": []
             }
@@ -66,7 +202,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "GroupPredictionEdge",
+          "name": "GroupPredictionConnection",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -75,33 +211,407 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
+                  "name": "GroupPredictionEdge",
+                  "kind": "OBJECT"
                 },
                 "name": null,
-                "kind": "NON_NULL"
+                "kind": "LIST"
               },
-              "name": "cursor",
+              "name": "edges",
               "isDeprecated": false,
-              "description": "A cursor for use in pagination",
+              "description": null,
               "deprecationReason": null,
               "args": []
             },
             {
               "type": {
-                "ofType": null,
-                "name": "GroupPrediction",
-                "kind": "OBJECT"
+                "ofType": {
+                  "ofType": null,
+                  "name": "PageInfo",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "NON_NULL"
               },
-              "name": "node",
+              "name": "pageInfo",
               "isDeprecated": false,
-              "description": "The item at the end of the edge",
+              "description": null,
               "deprecationReason": null,
               "args": []
             }
           ],
           "enumValues": null,
           "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "RegisterPayload",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "User",
+                "kind": "OBJECT"
+              },
+              "name": "user",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "GroupPredictions",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "GroupPredictionConnection",
+                "kind": "OBJECT"
+              },
+              "name": "groupPredictions",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": [
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "after",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "before",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "Int",
+                    "kind": "SCALAR"
+                  },
+                  "name": "first",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "Int",
+                    "kind": "SCALAR"
+                  },
+                  "name": "last",
+                  "description": null,
+                  "defaultValue": null
+                },
+                {
+                  "type": {
+                    "ofType": null,
+                    "name": "String",
+                    "kind": "SCALAR"
+                  },
+                  "name": "searchTerm",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "GroupPredictions",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "LIST"
+              },
+              "name": "groupPredictionsArray",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "PlayoffPrediction",
+          "kind": "OBJECT",
+          "interfaces": [
+            {
+              "ofType": null,
+              "name": "Node",
+              "kind": "INTERFACE"
+            }
+          ],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "id",
+              "isDeprecated": false,
+              "description": "The ID of an object",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Int",
+                "kind": "SCALAR"
+              },
+              "name": "phase",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Team",
+                "kind": "OBJECT"
+              },
+              "name": "team",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "User",
+                "kind": "OBJECT"
+              },
+              "name": "user",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "AddPlayoffPredictionInput",
+          "kind": "INPUT_OBJECT",
+          "interfaces": null,
+          "inputFields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "Int",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "phase",
+              "description": null,
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "teamId",
+              "description": null,
+              "defaultValue": null
+            }
+          ],
+          "fields": null,
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "String",
+          "kind": "SCALAR",
+          "interfaces": null,
+          "inputFields": null,
+          "fields": null,
+          "enumValues": null,
+          "description": "The `String` scalar type represents textual data, represented as UTF-8\ncharacter sequences. The String type is most often used by GraphQL to\nrepresent free-form human-readable text."
+        },
+        {
+          "possibleTypes": null,
+          "name": "Match",
+          "kind": "OBJECT",
+          "interfaces": [
+            {
+              "ofType": null,
+              "name": "Node",
+              "kind": "INTERFACE"
+            }
+          ],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "Int",
+                "kind": "SCALAR"
+              },
+              "name": "awayResult",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Team",
+                "kind": "OBJECT"
+              },
+              "name": "awayTeam",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Datetime",
+                "kind": "OBJECT"
+              },
+              "name": "date",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Boolean",
+                "kind": "SCALAR"
+              },
+              "name": "finished",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "group",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Int",
+                "kind": "SCALAR"
+              },
+              "name": "homeResult",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Team",
+                "kind": "OBJECT"
+              },
+              "name": "homeTeam",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "id",
+              "isDeprecated": false,
+              "description": "The ID of an object",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "name",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "Int",
+          "kind": "SCALAR",
+          "interfaces": null,
+          "inputFields": null,
+          "fields": null,
+          "enumValues": null,
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values.\nInt can represent values between `-(2^53 - 1)` and `2^53 - 1` since it is\nrepresented in JSON as double-precision floating point numbers specified\nby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point)."
         },
         {
           "possibleTypes": null,
@@ -373,85 +883,6 @@
             {
               "type": {
                 "ofType": null,
-                "name": "SpeciesConnection",
-                "kind": "OBJECT"
-              },
-              "name": "species",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "after",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "before",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "first",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "last",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "searchTerm",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Species",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "speciesArray",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
                 "name": "TeamConnection",
                 "kind": "OBJECT"
               },
@@ -580,18 +1011,6 @@
                   "defaultValue": null
                 }
               ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Viewer",
-                "kind": "OBJECT"
-              },
-              "name": "viewer",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
             }
           ],
           "enumValues": null,
@@ -599,460 +1018,96 @@
         },
         {
           "possibleTypes": null,
-          "name": "RegisterPayload",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "User",
-                "kind": "OBJECT"
-              },
-              "name": "user",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "GroupPredictions",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "GroupPredictionConnection",
-                "kind": "OBJECT"
-              },
-              "name": "groupPredictions",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "after",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "before",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "first",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "last",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "searchTerm",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "GroupPredictions",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "groupPredictionsArray",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "Pokemon",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "caughtAt",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "height",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "releaseComment",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "releasedAt",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Species",
-                "kind": "OBJECT"
-              },
-              "name": "species",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Trainer",
-                "kind": "OBJECT"
-              },
-              "name": "trainer",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "weight",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": [
-            {
-              "ofType": null,
-              "name": "User",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "Team",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "Match",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "GroupPrediction",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "PlayoffPrediction",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "Species",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "Trainer",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "Pokemon",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "EventCaught",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "EventReleased",
-              "kind": "OBJECT"
-            }
-          ],
-          "name": "Node",
-          "kind": "INTERFACE",
+          "name": "RegisterInput",
+          "kind": "INPUT_OBJECT",
           "interfaces": null,
-          "inputFields": null,
-          "fields": [
+          "inputFields": [
             {
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "ID",
+                  "name": "String",
                   "kind": "SCALAR"
                 },
                 "name": null,
                 "kind": "NON_NULL"
               },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The id of the object.",
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": "An object with an ID"
-        },
-        {
-          "possibleTypes": null,
-          "name": "Matches",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "MatchConnection",
-                "kind": "OBJECT"
-              },
-              "name": "matches",
-              "isDeprecated": false,
+              "name": "password",
               "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "after",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "before",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "first",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "last",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "searchTerm",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
+              "defaultValue": null
             },
             {
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "Matches",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "matchesArray",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "ID",
-          "kind": "SCALAR",
-          "interfaces": null,
-          "inputFields": null,
-          "fields": null,
-          "enumValues": null,
-          "description": "The `ID` scalar type represents a unique identifier, often used to\nrefetch an object or as key for a cache. The ID type appears in a JSON\nresponse as a String; however, it is not intended to be human-readable.\nWhen expected as an input type, any string (such as `\"4\"`) or integer\n(such as `4`) input value will be accepted as an ID."
-        },
-        {
-          "possibleTypes": null,
-          "name": "User",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
+                  "name": "String",
                   "kind": "SCALAR"
                 },
                 "name": null,
                 "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Trainer",
-                "kind": "OBJECT"
-              },
-              "name": "trainer",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
               },
               "name": "username",
+              "description": null,
+              "defaultValue": null
+            }
+          ],
+          "fields": null,
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "GroupPredictionEdge",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "String",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "cursor",
+              "isDeprecated": false,
+              "description": "A cursor for use in pagination",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "GroupPrediction",
+                "kind": "OBJECT"
+              },
+              "name": "node",
+              "isDeprecated": false,
+              "description": "The item at the end of the edge",
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "Datetime",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "iso8601",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -1064,74 +1119,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "PageInfo",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "endCursor",
-              "isDeprecated": false,
-              "description": "When paginating forwards, the cursor to continue.",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Boolean",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "hasNextPage",
-              "isDeprecated": false,
-              "description": "When paginating forwards, are there more items?",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Boolean",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "hasPreviousPage",
-              "isDeprecated": false,
-              "description": "When paginating backwards, are there more items?",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "startCursor",
-              "isDeprecated": false,
-              "description": "When paginating backwards, the cursor to continue.",
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "UserConnection",
+          "name": "TeamConnection",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -1140,7 +1128,7 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "UserEdge",
+                  "name": "TeamEdge",
                   "kind": "OBJECT"
                 },
                 "name": null,
@@ -1174,64 +1162,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "PlayoffPrediction",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "phase",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "User",
-                "kind": "OBJECT"
-              },
-              "name": "user",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "TeamEdge",
+          "name": "MatchEdge",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -1255,7 +1186,7 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Team",
+                "name": "Match",
                 "kind": "OBJECT"
               },
               "name": "node",
@@ -1270,151 +1201,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "LoginPayload",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "token",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "User",
-                "kind": "OBJECT"
-              },
-              "name": "user",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "Int",
-          "kind": "SCALAR",
-          "interfaces": null,
-          "inputFields": null,
-          "fields": null,
-          "enumValues": null,
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values.\nInt can represent values between `-(2^53 - 1)` and `2^53 - 1` since it is\nrepresented in JSON as double-precision floating point numbers specified\nby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point)."
-        },
-        {
-          "possibleTypes": null,
-          "name": "EventCaught",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Event",
-              "kind": "INTERFACE"
-            },
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "at",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Pokemon",
-                "kind": "OBJECT"
-              },
-              "name": "pokemon",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "CatchPokemonPayload",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "EventCaught",
-                "kind": "OBJECT"
-              },
-              "name": "event",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "String",
-          "kind": "SCALAR",
-          "interfaces": null,
-          "inputFields": null,
-          "fields": null,
-          "enumValues": null,
-          "description": "The `String` scalar type represents textual data, represented as UTF-8\ncharacter sequences. The String type is most often used by GraphQL to\nrepresent free-form human-readable text."
-        },
-        {
-          "possibleTypes": null,
-          "name": "Match",
+          "name": "Team",
           "kind": "OBJECT",
           "interfaces": [
             {
@@ -1428,46 +1215,10 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Int",
+                "name": "String",
                 "kind": "SCALAR"
               },
-              "name": "awayResult",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Team",
-                "kind": "OBJECT"
-              },
-              "name": "awayTeam",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "date",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Boolean",
-                "kind": "SCALAR"
-              },
-              "name": "finished",
+              "name": "emoji",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -1479,7 +1230,7 @@
                 "name": "String",
                 "kind": "SCALAR"
               },
-              "name": "group",
+              "name": "emojiString",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -1488,10 +1239,10 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Int",
+                "name": "String",
                 "kind": "SCALAR"
               },
-              "name": "homeResult",
+              "name": "fifaCode",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -1500,10 +1251,10 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Team",
-                "kind": "OBJECT"
+                "name": "String",
+                "kind": "SCALAR"
               },
-              "name": "homeTeam",
+              "name": "flag",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -1633,93 +1384,33 @@
         },
         {
           "possibleTypes": null,
-          "name": "Trainer",
+          "name": "RootMutationType",
           "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
+          "interfaces": [],
           "inputFields": null,
           "fields": [
             {
               "type": {
                 "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "displayName",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "PokemonConnection",
+                "name": "AddGroupPredictionPayload",
                 "kind": "OBJECT"
               },
-              "name": "pokemons",
+              "name": "addGroupPrediction",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
               "args": [
                 {
                   "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
+                    "ofType": {
+                      "ofType": null,
+                      "name": "AddGroupPredictionInput",
+                      "kind": "INPUT_OBJECT"
+                    },
+                    "name": null,
+                    "kind": "NON_NULL"
                   },
-                  "name": "after",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "before",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "first",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "last",
+                  "name": "input",
                   "description": null,
                   "defaultValue": null
                 }
@@ -1728,14 +1419,110 @@
             {
               "type": {
                 "ofType": null,
-                "name": "User",
+                "name": "AddPlayoffPredictionPayload",
                 "kind": "OBJECT"
               },
-              "name": "user",
+              "name": "addPlayoffPrediction",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
-              "args": []
+              "args": [
+                {
+                  "type": {
+                    "ofType": {
+                      "ofType": null,
+                      "name": "AddPlayoffPredictionInput",
+                      "kind": "INPUT_OBJECT"
+                    },
+                    "name": null,
+                    "kind": "NON_NULL"
+                  },
+                  "name": "input",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "LoginPayload",
+                "kind": "OBJECT"
+              },
+              "name": "login",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": [
+                {
+                  "type": {
+                    "ofType": {
+                      "ofType": null,
+                      "name": "LoginInput",
+                      "kind": "INPUT_OBJECT"
+                    },
+                    "name": null,
+                    "kind": "NON_NULL"
+                  },
+                  "name": "input",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "RegisterPayload",
+                "kind": "OBJECT"
+              },
+              "name": "register",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": [
+                {
+                  "type": {
+                    "ofType": {
+                      "ofType": null,
+                      "name": "RegisterInput",
+                      "kind": "INPUT_OBJECT"
+                    },
+                    "name": null,
+                    "kind": "NON_NULL"
+                  },
+                  "name": "input",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "RemovePlayoffPredictionPayload",
+                "kind": "OBJECT"
+              },
+              "name": "removePlayoffPrediction",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": [
+                {
+                  "type": {
+                    "ofType": {
+                      "ofType": null,
+                      "name": "RemovePlayoffPredictionInput",
+                      "kind": "INPUT_OBJECT"
+                    },
+                    "name": null,
+                    "kind": "NON_NULL"
+                  },
+                  "name": "input",
+                  "description": null,
+                  "defaultValue": null
+                }
+              ]
             }
           ],
           "enumValues": null,
@@ -1782,7 +1569,113 @@
         },
         {
           "possibleTypes": null,
-          "name": "TeamConnection",
+          "name": "AddGroupPredictionInput",
+          "kind": "INPUT_OBJECT",
+          "interfaces": null,
+          "inputFields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "matchId",
+              "description": null,
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "String",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "prediction",
+              "description": null,
+              "defaultValue": null
+            }
+          ],
+          "fields": null,
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "PageInfo",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "endCursor",
+              "isDeprecated": false,
+              "description": "When paginating forwards, the cursor to continue.",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "Boolean",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "hasNextPage",
+              "isDeprecated": false,
+              "description": "When paginating forwards, are there more items?",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "Boolean",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "hasPreviousPage",
+              "isDeprecated": false,
+              "description": "When paginating backwards, are there more items?",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "startCursor",
+              "isDeprecated": false,
+              "description": "When paginating backwards, the cursor to continue.",
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "LoginPayload",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -1791,7 +1684,81 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "TeamEdge",
+                  "name": "String",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "token",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "User",
+                "kind": "OBJECT"
+              },
+              "name": "user",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "AddPlayoffPredictionPayload",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "PlayoffPrediction",
+                "kind": "OBJECT"
+              },
+              "name": "playoffPrediction",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "result",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "PlayoffPredictionConnection",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "PlayoffPredictionEdge",
                   "kind": "OBJECT"
                 },
                 "name": null,
@@ -1825,7 +1792,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "EventEdge",
+          "name": "TeamEdge",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -1849,8 +1816,8 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Event",
-                "kind": "INTERFACE"
+                "name": "Team",
+                "kind": "OBJECT"
               },
               "name": "node",
               "isDeprecated": false,
@@ -1864,96 +1831,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "Datetime",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "iso8601",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "PokemonConnection",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "PokemonEdge",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "edges",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "PageInfo",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "pageInfo",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "RootSubscriptionType",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "Event",
-                "kind": "INTERFACE"
-              },
-              "name": "eventsFeed",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "CatchPokemonInput",
+          "name": "LoginInput",
           "kind": "INPUT_OBJECT",
           "interfaces": null,
           "inputFields": [
@@ -1967,7 +1845,21 @@
                 "name": null,
                 "kind": "NON_NULL"
               },
-              "name": "nestToken",
+              "name": "password",
+              "description": null,
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "String",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "username",
               "description": null,
               "defaultValue": null
             }
@@ -1978,7 +1870,17 @@
         },
         {
           "possibleTypes": null,
-          "name": "PlayoffPredictionConnection",
+          "name": "Boolean",
+          "kind": "SCALAR",
+          "interfaces": null,
+          "inputFields": null,
+          "fields": null,
+          "enumValues": null,
+          "description": "The `Boolean` scalar type represents `true` or `false`."
+        },
+        {
+          "possibleTypes": null,
+          "name": "UserConnection",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -1987,7 +1889,7 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "PlayoffPredictionEdge",
+                  "name": "UserEdge",
                   "kind": "OBJECT"
                 },
                 "name": null,
@@ -2090,379 +1992,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "Boolean",
-          "kind": "SCALAR",
-          "interfaces": null,
-          "inputFields": null,
-          "fields": null,
-          "enumValues": null,
-          "description": "The `Boolean` scalar type represents `true` or `false`."
-        },
-        {
-          "possibleTypes": null,
-          "name": "Team",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "emoji",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "emojiString",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "fifaCode",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "flag",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "name",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "RegisterInput",
-          "kind": "INPUT_OBJECT",
-          "interfaces": null,
-          "inputFields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "password",
-              "description": null,
-              "defaultValue": null
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "username",
-              "description": null,
-              "defaultValue": null
-            }
-          ],
-          "fields": null,
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "LoginInput",
-          "kind": "INPUT_OBJECT",
-          "interfaces": null,
-          "inputFields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "password",
-              "description": null,
-              "defaultValue": null
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "username",
-              "description": null,
-              "defaultValue": null
-            }
-          ],
-          "fields": null,
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "Species",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "imageUrl",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "maxHeight",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "maxWeight",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "minHeight",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "minWeight",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "name",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "slug",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "EventReleased",
-          "kind": "OBJECT",
-          "interfaces": [
-            {
-              "ofType": null,
-              "name": "Event",
-              "kind": "INTERFACE"
-            },
-            {
-              "ofType": null,
-              "name": "Node",
-              "kind": "INTERFACE"
-            }
-          ],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "at",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "comment",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": "The ID of an object",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Pokemon",
-                "kind": "OBJECT"
-              },
-              "name": "pokemon",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "RootMutationType",
+          "name": "AddGroupPredictionPayload",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -2470,160 +2000,10 @@
             {
               "type": {
                 "ofType": null,
-                "name": "AddGroupPredictionPayload",
+                "name": "GroupPrediction",
                 "kind": "OBJECT"
               },
-              "name": "addGroupPrediction",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "AddGroupPredictionInput",
-                      "kind": "INPUT_OBJECT"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
-                  },
-                  "name": "input",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "CatchPokemonPayload",
-                "kind": "OBJECT"
-              },
-              "name": "catchPokemon",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "CatchPokemonInput",
-                      "kind": "INPUT_OBJECT"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
-                  },
-                  "name": "input",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "LoginPayload",
-                "kind": "OBJECT"
-              },
-              "name": "login",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "LoginInput",
-                      "kind": "INPUT_OBJECT"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
-                  },
-                  "name": "input",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "RegisterPayload",
-                "kind": "OBJECT"
-              },
-              "name": "register",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "RegisterInput",
-                      "kind": "INPUT_OBJECT"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
-                  },
-                  "name": "input",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "ReleasePokemonPayload",
-                "kind": "OBJECT"
-              },
-              "name": "releasePokemon",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "ReleasePokemonInput",
-                      "kind": "INPUT_OBJECT"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
-                  },
-                  "name": "input",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "SpeciesConnection",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "SpeciesEdge",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "edges",
+              "name": "groupPrediction",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -2631,15 +2011,11 @@
             },
             {
               "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "PageInfo",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "NON_NULL"
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
               },
-              "name": "pageInfo",
+              "name": "result",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -2651,7 +2027,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "MatchEdge",
+          "name": "UserEdge",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -2675,7 +2051,7 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Match",
+                "name": "User",
                 "kind": "OBJECT"
               },
               "name": "node",
@@ -2690,7 +2066,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "AddGroupPredictionPayload",
+          "name": "RemovePlayoffPredictionPayload",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
@@ -2713,89 +2089,7 @@
         },
         {
           "possibleTypes": null,
-          "name": "GroupPredictionConnection",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "GroupPredictionEdge",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "edges",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "PageInfo",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "pageInfo",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "SpeciesEdge",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "cursor",
-              "isDeprecated": false,
-              "description": "A cursor for use in pagination",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Species",
-                "kind": "OBJECT"
-              },
-              "name": "node",
-              "isDeprecated": false,
-              "description": "The item at the end of the edge",
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "AddGroupPredictionInput",
+          "name": "RemovePlayoffPredictionInput",
           "kind": "INPUT_OBJECT",
           "interfaces": null,
           "inputFields": [
@@ -2803,13 +2097,13 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "ID",
+                  "name": "Int",
                   "kind": "SCALAR"
                 },
                 "name": null,
                 "kind": "NON_NULL"
               },
-              "name": "matchId",
+              "name": "phase",
               "description": null,
               "defaultValue": null
             },
@@ -2817,265 +2111,18 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "String",
+                  "name": "ID",
                   "kind": "SCALAR"
                 },
                 "name": null,
                 "kind": "NON_NULL"
               },
-              "name": "prediction",
+              "name": "teamId",
               "description": null,
               "defaultValue": null
             }
           ],
           "fields": null,
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "EventConnection",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "EventEdge",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "edges",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "PageInfo",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "pageInfo",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "Viewer",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "EventConnection",
-                "kind": "OBJECT"
-              },
-              "name": "events",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": [
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "after",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "String",
-                    "kind": "SCALAR"
-                  },
-                  "name": "before",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "first",
-                  "description": null,
-                  "defaultValue": null
-                },
-                {
-                  "type": {
-                    "ofType": null,
-                    "name": "Int",
-                    "kind": "SCALAR"
-                  },
-                  "name": "last",
-                  "description": null,
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "ID",
-                "kind": "SCALAR"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "PokemonEdge",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "cursor",
-              "isDeprecated": false,
-              "description": "A cursor for use in pagination",
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Pokemon",
-                "kind": "OBJECT"
-              },
-              "name": "node",
-              "isDeprecated": false,
-              "description": "The item at the end of the edge",
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "ReleasePokemonInput",
-          "kind": "INPUT_OBJECT",
-          "interfaces": null,
-          "inputFields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "String",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "comment",
-              "description": null,
-              "defaultValue": null
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "pokemonId",
-              "description": null,
-              "defaultValue": null
-            }
-          ],
-          "fields": null,
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": [
-            {
-              "ofType": null,
-              "name": "EventCaught",
-              "kind": "OBJECT"
-            },
-            {
-              "ofType": null,
-              "name": "EventReleased",
-              "kind": "OBJECT"
-            }
-          ],
-          "name": "Event",
-          "kind": "INTERFACE",
-          "interfaces": null,
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "Datetime",
-                "kind": "OBJECT"
-              },
-              "name": "at",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "ID",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "id",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
           "enumValues": null,
           "description": null
         },
@@ -3227,86 +2274,11 @@
         },
         {
           "possibleTypes": null,
-          "name": "__InputValue",
+          "name": "__EnumValue",
           "kind": "OBJECT",
           "interfaces": [],
           "inputFields": null,
           "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "defaultValue",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "description",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "name",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "__Type",
-                "kind": "OBJECT"
-              },
-              "name": "type",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
-          "name": "__Field",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "__InputValue",
-                  "kind": "OBJECT"
-                },
-                "name": null,
-                "kind": "LIST"
-              },
-              "name": "args",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
             {
               "type": {
                 "ofType": null,
@@ -3350,18 +2322,6 @@
                 "kind": "SCALAR"
               },
               "name": "name",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "__Type",
-                "kind": "OBJECT"
-              },
-              "name": "type",
               "isDeprecated": false,
               "description": null,
               "deprecationReason": null,
@@ -3534,65 +2494,6 @@
         },
         {
           "possibleTypes": null,
-          "name": "__EnumValue",
-          "kind": "OBJECT",
-          "interfaces": [],
-          "inputFields": null,
-          "fields": [
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "deprecationReason",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "description",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Boolean",
-                "kind": "SCALAR"
-              },
-              "name": "isDeprecated",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "String",
-                "kind": "SCALAR"
-              },
-              "name": "name",
-              "isDeprecated": false,
-              "description": null,
-              "deprecationReason": null,
-              "args": []
-            }
-          ],
-          "enumValues": null,
-          "description": null
-        },
-        {
-          "possibleTypes": null,
           "name": "__DirectiveLocation",
           "kind": "ENUM",
           "interfaces": null,
@@ -3722,11 +2623,155 @@
           ],
           "enumValues": null,
           "description": "Represents a schema"
+        },
+        {
+          "possibleTypes": null,
+          "name": "__Field",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "__InputValue",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "LIST"
+              },
+              "name": "args",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "deprecationReason",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "description",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Boolean",
+                "kind": "SCALAR"
+              },
+              "name": "isDeprecated",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "name",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "__Type",
+                "kind": "OBJECT"
+              },
+              "name": "type",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
+        },
+        {
+          "possibleTypes": null,
+          "name": "__InputValue",
+          "kind": "OBJECT",
+          "interfaces": [],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "defaultValue",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "description",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "name",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "__Type",
+                "kind": "OBJECT"
+              },
+              "name": "type",
+              "isDeprecated": false,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": null
         }
       ],
-      "subscriptionType": {
-        "name": "RootSubscriptionType"
-      },
+      "subscriptionType": null,
       "queryType": {
         "name": "RootQueryType"
       },

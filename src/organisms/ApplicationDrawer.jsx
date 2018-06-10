@@ -6,7 +6,6 @@ import Hidden from "material-ui/Hidden";
 import { throttle } from "throttle-debounce";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 
-import SearchField from "../atoms/SearchField";
 import SimpleButton from "../atoms/SimpleButton";
 import withRelayData from "../services/withRelayData";
 import ApplicationBar from "../molecules/ApplicationBar";
@@ -33,7 +32,6 @@ const query = graphql`
     me {
       id
     }
-    ...ConnectionSpeciesList_query @arguments(searchTerm: $searchTerm)
   }
 `;
 
@@ -74,20 +72,6 @@ class ApplicationDrawer extends React.PureComponent<PropsType, StateType> {
     </ApplicationBar>
   );
 
-  // renderSearchField = () => (
-  //   <SearchField
-  //     onChange={speciesListSearchTerm =>
-  //       this.throttledSetState({ speciesListSearchTerm })
-  //     }
-  //   />
-  // );
-
-  // renderSpeciesList = () => (
-  //   <ConnectedSpeciesList
-  //     variables={{ searchTerm: this.state.speciesListSearchTerm }}
-  //   />
-  // );
-
   renderBottomNavigation = (props: Object) => (
     <Hidden smUp>
       <BottomNavigation {...props} />
@@ -98,8 +82,6 @@ class ApplicationDrawer extends React.PureComponent<PropsType, StateType> {
     return (
       <ResponsiveDrawer
         renderAppBar={this.renderAppBar}
-        // renderDrawerHeader={this.renderSearchField}
-        // renderDrawerContent={this.renderSpeciesList}
         renderBottomNavigation={this.renderBottomNavigation}
       >
         {this.props.children}

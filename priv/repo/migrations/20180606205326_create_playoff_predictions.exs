@@ -2,9 +2,10 @@ defmodule Pokedex.Repo.Migrations.CreatePlayoffPredictions do
   use Ecto.Migration
 
   def change do
-    create table(:playoff_prediction) do
+    create table(:playoff_predictions) do
       add :phase,  :integer
       add :user_id, references("users")
+      add :team_id, references("teams")
 
       timestamps()
     end

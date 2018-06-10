@@ -22,6 +22,17 @@ const playoffPredictionListQuery = graphql`
         }
       }
     }
+    playoffPredictions(first: 1000) {
+      edges {
+        node {
+          phase
+          team {
+            id
+            name
+          }
+        }
+      }
+    }
   }
 `;
 
