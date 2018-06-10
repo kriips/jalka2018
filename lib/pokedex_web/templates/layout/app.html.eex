@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seltsi jalkaennustus 2018</title>
-    <link rel="stylesheet" type="text/html" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/react-selectize@3.0.1/dist/index.min.css"/>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://unpkg.com/react-selectize@3.0.1/dist/index.min.css"/>
 
   </head>
 
   <body>
     <div id="reactRoot" />
-    <script type="text/html" src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
