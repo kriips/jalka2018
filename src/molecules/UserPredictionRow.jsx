@@ -17,6 +17,7 @@ export default class UserPredictionRow extends React.Component<{}> {
     completed: false,
     processing: false,
     rowIcon: "",
+    prediction: this.props.prediction,
   };
 
   successIcon = <MaterialIcon icon="done" color={colorPallet.green._200} />;
@@ -33,6 +34,7 @@ export default class UserPredictionRow extends React.Component<{}> {
         error: null,
         processing: true,
         rowIcon: this.pendingIcon,
+        prediction: prediction,
       },
       () =>
         addGroupPrediction(
@@ -84,7 +86,7 @@ export default class UserPredictionRow extends React.Component<{}> {
         </Grid>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <RadioGroup
-            value={this.props.prediction}
+            value={this.state.prediction}
             onChange={this.submitGroupPrediction}
             horizontal
           >
