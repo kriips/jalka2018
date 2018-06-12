@@ -63,7 +63,7 @@ use Mix.Config
 
 config :pokedex, Pokedex.Guardian,
        issuer: "pokedex",
-       secret_key: "4yYmXNE6n3elAKHCnCibmmTZeCUToMVUsFygZz5u5HdkTZYri0ylFLgE2EUYRgkP"
+       secret_key: "rwwAmuQZh3ugn/Vl5Sv6w/sMeLs230R4C9MukbcOIIHxVHbWxFSUKHypRXdiw3U7"
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
