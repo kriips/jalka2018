@@ -24,7 +24,6 @@ defmodule Pokedex.Accounts.User do
     |> unique_constraint(:username)
     |> validate_required([:username, :password])
     |> validate_length(:password, min: 6)
-#    |> allowed_user_match
     |> hash_password
   end
 
