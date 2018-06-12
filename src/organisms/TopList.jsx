@@ -8,42 +8,8 @@ import TopListQuery from "./__generated__/TopListQuery";
 import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
 import TopListTable from "../molecules/TopListTable";
 
-// const topListQuery = graphql`
-//   query TopListQuery {
-//     me {
-//       id
-//     }
-//     users (first: 250) {
-//       edges {
-//         node {
-//           username
-//           playoffPredictions {
-//             team {
-//               name
-//               emojiString
-//             }
-//             phase
-//           }
-//           groupPredictions {
-//             prediction
-//             match {
-//               awayTeam {
-//                 emojiString
-//                 name
-//               }
-//               homeTeam {
-//                 emojiString
-//                 name
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 const topListQuery = graphql`
-  query TopListQuery {
+  query TopListQuery($userId: String) {
     me {
       id
     }
@@ -51,6 +17,7 @@ const topListQuery = graphql`
       edges {
         node {
           username
+          ...Prediction_predictions @arguments(userId: $userId)
         }
       }
     }
