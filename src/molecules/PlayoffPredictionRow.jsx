@@ -41,23 +41,23 @@ export default class PlayoffPredictionRow extends React.Component<{}> {
   );
   errorIcon = <MaterialIcon icon="error" color={colorPallet.red._200} />;
 
-  valuesChanged = items => {
-    let selItems = this.state.selectedItems;
-    let itemIds = items ? items.map(({ value }) => value) : [];
-    let removeItems = difference(selItems, itemIds);
-    let addItems = difference(itemIds, selItems);
-    let rawId;
-    addItems.forEach(addItem => {
-      rawId = atob(addItem).split(":")[1];
-      selItems.push(addItem);
-      this.sendMutation(selItems, "add", rawId);
-    });
-    removeItems.forEach(removeItem => {
-      rawId = atob(removeItem).split(":")[1];
-      pull(selItems, removeItem);
-      this.sendMutation(selItems, "remove", rawId);
-    });
-  };
+  // valuesChanged = items => {
+  //   let selItems = this.state.selectedItems;
+  //   let itemIds = items ? items.map(({ value }) => value) : [];
+  //   let removeItems = difference(selItems, itemIds);
+  //   let addItems = difference(itemIds, selItems);
+  //   let rawId;
+  //   addItems.forEach(addItem => {
+  //     rawId = atob(addItem).split(":")[1];
+  //     selItems.push(addItem);
+  //     this.sendMutation(selItems, "add", rawId);
+  //   });
+  //   removeItems.forEach(removeItem => {
+  //     rawId = atob(removeItem).split(":")[1];
+  //     pull(selItems, removeItem);
+  //     this.sendMutation(selItems, "remove", rawId);
+  //   });
+  // };
 
   sendMutation = (selItems, action, rawId) => {
     this.setState(
@@ -135,11 +135,12 @@ export default class PlayoffPredictionRow extends React.Component<{}> {
             placeholder="Vali võistkonnad"
             theme="material"
             width="auto"
+            disabled="true"
             maxValues={this.props.phase}
             defaultValues={this.defaultValues}
-            onValuesChange={item => {
-              this.valuesChanged(item);
-            }}
+            // onValuesChange={item => {
+            //   this.valuesChanged(item);
+            //}}
             options={this.props.teams.map(team => ({
               label: team.node.name,
               value: team.node.id,

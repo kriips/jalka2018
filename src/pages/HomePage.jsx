@@ -28,14 +28,14 @@ class HomePage extends React.Component {
               <li>Õige võitja 8p.</li>
             </ul>
             <p>Osalustasu kanda arvele: Martin Häidberg EE171010010219099015</p>
-            <Button
-              variant="raised"
-              color="primary"
-              component={Link}
-              to="/ennusta"
-            >
-              Ennusta
-            </Button>
+            {/*<Button*/}
+            {/*variant="raised"*/}
+            {/*color="primary"*/}
+            {/*component={Link}*/}
+            {/*to="/ennusta"*/}
+            {/*>*/}
+            {/*Ennusta*/}
+            {/*</Button>*/}
           </PaperSheet>
         </Grid>
       </Grid>
