@@ -42,7 +42,7 @@ class ApplicationBar extends React.PureComponent<PropsType> {
         <Toolbar>
           {this.renderMenuIcon()}
           <Typography variant="title" color="inherit" className={classes.flex}>
-            EÜSi jalkaennustus 2018
+            Suur võmmiennustus 2018
           </Typography>
           {this.props.children}
         </Toolbar>

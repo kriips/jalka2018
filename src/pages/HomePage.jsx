@@ -16,7 +16,7 @@ class HomePage extends React.Component {
         <Grid item xs={12} sm={8} md={6} lg={8} xl={4}>
           <PaperSheet headline="Jalgpalli MM 2018 ennustusvõistlus">
             <h1 />
-            <p>Repart 5 eurot.</p>
+            <p>Osalustasu 5 eurot.</p>
             <p>Reeglid:</p>
             <ul>
               <li>Ennustamine lõpeb enne turniiri esimese mängu avavilet.</li>
@@ -27,11 +27,7 @@ class HomePage extends React.Component {
               <li>Iga õige finalist 6p.</li>
               <li>Õige võitja 8p.</li>
             </ul>
-            <p>
-              Repart jaotatakse ära esikolmiku vahel vastavalt põhimõttele
-              50:30:20.
-            </p>
-            <p>Repart kanda arvele: MARK-EERIK KODAR EE492200221064373219</p>
+            <p>Osalustasu kanda arvele: Martin Häidberg EE171010010219099015</p>
             <Button
               variant="raised"
               color="primary"
