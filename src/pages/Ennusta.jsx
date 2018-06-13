@@ -35,7 +35,7 @@ class Ennusta extends React.Component {
     return (
       <Grid container justify="center" spacing={24}>
         <Grid item xs={10} sm={10} md={10} lg={10}>
-          <PaperSheet headline="Ennusta alagrupimängude tulemusi">
+          <PaperSheet headline="Ennustamine on lõppenud">
             <h4>Iga õige tulemus annab kaks punkti</h4>
             <UserPrediction />
           </PaperSheet>

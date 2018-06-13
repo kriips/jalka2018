@@ -26,28 +26,32 @@ export default class UserPredictionRow extends React.Component<{}> {
   );
   errorIcon = <MaterialIcon icon="error" color={colorPallet.red._200} />;
 
-  submitGroupPrediction = prediction => {
-    let rawId = atob(this.props.matchId);
-    if (!prediction || this.state.processing) return;
-    this.setState(
-      {
-        error: null,
-        processing: true,
-        rowIcon: this.pendingIcon,
-        prediction: prediction,
-      },
-      () =>
-        addGroupPrediction(
-          {
-            matchId: rawId.split(":")[1],
-            prediction: prediction,
-          },
-          this.props.environment,
-        )
-          .then(this.handleSuccess)
-          .catch(this.handleError),
-    );
+  doesNotWork = () => {
+    alert("Ei toimi enam");
   };
+
+  // submitGroupPrediction = prediction => {
+  //   let rawId = atob(this.props.matchId);
+  //   if (!prediction || this.state.processing) return;
+  //   this.setState(
+  //     {
+  //       error: null,
+  //       processing: true,
+  //       rowIcon: this.pendingIcon,
+  //       prediction: prediction,
+  //     },
+  //     () =>
+  //       addGroupPrediction(
+  //         {
+  //           matchId: rawId.split(":")[1],
+  //           prediction: prediction,
+  //         },
+  //         this.props.environment,
+  //       )
+  //         .then(this.handleSuccess)
+  //         .catch(this.handleError),
+  //   );
+  // };
 
   handleSuccess = () => {
     this.setState({
@@ -87,7 +91,8 @@ export default class UserPredictionRow extends React.Component<{}> {
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <RadioGroup
             value={this.state.prediction}
-            onChange={this.submitGroupPrediction}
+            // onChange={this.submitGroupPrediction}
+            onChange={this.doesNotWork}
             horizontal
           >
             <RadioButton

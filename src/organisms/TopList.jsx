@@ -9,7 +9,7 @@ import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext
 import TopListTable from "../molecules/TopListTable";
 
 const topListQuery = graphql`
-  query TopListQuery($userId: String) {
+  query TopListQuery {
     me {
       id
     }
@@ -17,7 +17,6 @@ const topListQuery = graphql`
       edges {
         node {
           username
-          ...Prediction_predictions @arguments(userId: $userId)
         }
       }
     }

@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { TableRow, TableCell } from "material-ui/Table";
 import Button from "material-ui/Button";
 import Modal from "react-responsive-modal";
-import { createFragmentContainer } from "../../flow-typed/npm/react-relay_v1.x.x";
 
 export default class TopListRow extends React.Component<{}> {
   state = {
@@ -55,7 +54,8 @@ export default class TopListRow extends React.Component<{}> {
               Ennustus
             </Button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <Prediction />
+              {/*<Prediction />*/}
+              Tuleb peatselt. Töö käib
             </Modal>
           </div>
         </TableCell>
