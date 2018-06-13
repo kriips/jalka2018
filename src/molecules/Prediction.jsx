@@ -17,7 +17,7 @@ export default createRefetchContainer(
   Prediction,
   {
     predictions: graphql`
-      fragment Prediction_playoffPredictions on RootQueryType
+      fragment Prediction_predictions on RootQueryType
         @argumentDefinitions(userId: { type: "String" }) {
         playoffPredictions {
           team {
