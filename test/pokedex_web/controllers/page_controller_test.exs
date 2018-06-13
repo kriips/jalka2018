@@ -3,6 +3,6 @@ defmodule PokedexWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Seltsi jalkaennustus 2018"
+    assert html_response(conn, 200) =~ "Suur võmmiennustus 2018"
   end
 end
