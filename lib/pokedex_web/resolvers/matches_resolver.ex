@@ -31,7 +31,7 @@ defmodule PokedexWeb.Resolvers.MatchesResolver do
     IO.puts("updating result")
     IO.inspect(%{match_id: match_id, home_result: home_result, away_result: away_result})
 
-    Repo.get_by(Match, id: match_id)
+    Repo.get_by(Match, name: match_id)
     |> IO.inspect
     |> Match.create_changeset(%{home_result: home_result, away_result: away_result, finished: true})
     |> Repo.update()

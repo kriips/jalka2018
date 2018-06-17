@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 74cb88d131a9319e2065f00d0b167851
+ * @relayHash ad1996bfc59b579723e4e985039ba512
  */
 
 /* eslint-disable */
@@ -30,6 +30,8 @@ export type UserPredictionListQueryResponse = {|
       +node: ?{|
         +id: string,
         +name: ?string,
+        +awayResult: ?number,
+        +homeResult: ?number,
         +group: ?string,
         +date: ?{|
           +iso8601: ?string,
@@ -73,6 +75,8 @@ query UserPredictionListQuery {
       node {
         id
         name
+        awayResult
+        homeResult
         group
         date {
           iso8601
@@ -198,6 +202,20 @@ v7 = {
             {
               "kind": "ScalarField",
               "alias": null,
+              "name": "awayResult",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "homeResult",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
               "name": "group",
               "args": null,
               "storageKey": null
@@ -251,7 +269,7 @@ return {
   "operationKind": "query",
   "name": "UserPredictionListQuery",
   "id": null,
-  "text": "query UserPredictionListQuery {\n  me {\n    id\n  }\n  groupPredictions(first: 1000) {\n    edges {\n      node {\n        match {\n          id\n          name\n        }\n        prediction\n        id\n      }\n    }\n  }\n  matches(first: 100) {\n    edges {\n      node {\n        id\n        name\n        group\n        date {\n          iso8601\n        }\n        awayTeam {\n          name\n          id\n          emojiString\n        }\n        homeTeam {\n          name\n          id\n          emojiString\n        }\n      }\n    }\n  }\n}\n",
+  "text": "query UserPredictionListQuery {\n  me {\n    id\n  }\n  groupPredictions(first: 1000) {\n    edges {\n      node {\n        match {\n          id\n          name\n        }\n        prediction\n        id\n      }\n    }\n  }\n  matches(first: 100) {\n    edges {\n      node {\n        id\n        name\n        awayResult\n        homeResult\n        group\n        date {\n          iso8601\n        }\n        awayTeam {\n          name\n          id\n          emojiString\n        }\n        homeTeam {\n          name\n          id\n          emojiString\n        }\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -346,5 +364,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '252c6b8831e3df5919b43a43ed20cf03';
+(node/*: any*/).hash = '20898afa0055270a77c5dcda8f1e3c4f';
 module.exports = node;

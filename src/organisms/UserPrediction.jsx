@@ -29,6 +29,8 @@ const userPredictionListQuery = graphql`
         node {
           id
           name
+          awayResult
+          homeResult
           group
           date {
             iso8601
