@@ -13,16 +13,40 @@ import TopListRow from "./TopListRow";
 export default class TopListTable extends React.Component<{}> {
   renderUsers = users => {
     let usersElements = [];
-    users.forEach(user => {
+    let flatUsers = users.map(user => {
+      return {
+        username: user.node.username,
+        groupScore: user.node.groupScore,
+        playoffScore: user.node.playoffScore,
+      };
+    });
+    flatUsers = flatUsers.sort((a, b) => {
+      console.log({ a, b });
+      return a.groupScore + a.playoffScore < b.groupScore + b.playoffScore;
+    });
+
+    let sequence = 0;
+    let currentPos = 1;
+    let previousScore = 0;
+    flatUsers.forEach(user => {
+      if (previousScore !== user.groupScore + user.playoffScore) {
+        currentPos = sequence + 1;
+      }
+      user.position = currentPos;
+      previousScore = user.groupScore + user.playoffScore;
+      sequence++;
+    });
+
+    console.log("flatUsers", flatUsers);
+    flatUsers.forEach(user => {
       console.log("user", user);
       usersElements.push(
         <TopListRow
-          username={user.node.username}
-          key={user.node.username}
-          playoffPredictions={user.node.playoffPredictions}
-          groupPredictions={user.node.groupPredictions}
-          groupScore={user.node.groupScore}
-          playoffScore={user.node.playoffScore}
+          username={user.username}
+          key={user.username}
+          groupScore={user.groupScore}
+          playoffScore={user.playoffScore}
+          position={user.position}
         />,
       );
     });

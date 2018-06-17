@@ -30,7 +30,7 @@ export default class TopListRow extends React.Component<{}> {
     return (
       <TableRow>
         <TableCell>
-          <div>1.</div>
+          <div>{this.props.position}.</div>
         </TableCell>
         <TableCell>
           <div>{this.props.username}</div>
