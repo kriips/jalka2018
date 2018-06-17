@@ -32,14 +32,14 @@ class HomePage extends React.Component {
               50:30:20.
             </p>
             <p>Repart kanda arvele: MARK-EERIK KODAR EE492200221064373219</p>
-            <Button
-              variant="raised"
-              color="primary"
-              component={Link}
-              to="/ennusta"
-            >
-              Ennusta
-            </Button>
+            {/*<Button*/}
+            {/*variant="raised"*/}
+            {/*color="primary"*/}
+            {/*component={Link}*/}
+            {/*to="/ennusta"*/}
+            {/*>*/}
+            {/*Ennusta*/}
+            {/*</Button>*/}
           </PaperSheet>
         </Grid>
       </Grid>

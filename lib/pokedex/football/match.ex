@@ -21,11 +21,16 @@ defmodule Pokedex.Football.Match do
   end
 
   @doc false
-  def changeset(team, attrs) do
-    team
+  def changeset(match, attrs) do
+    match
     |> cast(attrs, [:group, :name, :home_team_id, :away_team_id, :home_result, :away_result, :date, :finished])
   end
 
   def get_match!(id), do: Repo.get!(Match, id)
 
+  @doc false
+  def create_changeset(match, attrs) do
+    match
+    |> cast(attrs, [:home_result, :away_result, :finished])
+  end
 end

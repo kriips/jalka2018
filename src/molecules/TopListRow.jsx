@@ -36,13 +36,13 @@ export default class TopListRow extends React.Component<{}> {
           <div>{this.props.username}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{this.props.groupScore}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{this.props.playoffScore}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{+this.props.groupScore + +this.props.playoffScore}</div>
         </TableCell>
         <TableCell>
           <div>

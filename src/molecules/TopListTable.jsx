@@ -14,12 +14,15 @@ export default class TopListTable extends React.Component<{}> {
   renderUsers = users => {
     let usersElements = [];
     users.forEach(user => {
+      console.log("user", user);
       usersElements.push(
         <TopListRow
           username={user.node.username}
           key={user.node.username}
           playoffPredictions={user.node.playoffPredictions}
           groupPredictions={user.node.groupPredictions}
+          groupScore={user.node.groupScore}
+          playoffScore={user.node.playoffScore}
         />,
       );
     });
@@ -27,6 +30,7 @@ export default class TopListTable extends React.Component<{}> {
   };
 
   render() {
+    console.log("props", this.props);
     return (
       <Table>
         <TableHead>
