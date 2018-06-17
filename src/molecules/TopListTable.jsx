@@ -16,6 +16,7 @@ export default class TopListTable extends React.Component<{}> {
     let flatUsers = users.map(user => {
       return {
         username: user.node.username,
+        userId: user.node.id,
         groupScore: user.node.groupScore,
         playoffScore: user.node.playoffScore,
       };
@@ -39,6 +40,7 @@ export default class TopListTable extends React.Component<{}> {
     flatUsers.forEach(user => {
       usersElements.push(
         <TopListRow
+          userId={user.userId}
           username={user.username}
           key={user.username}
           groupScore={user.groupScore}

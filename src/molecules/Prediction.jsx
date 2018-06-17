@@ -4,7 +4,7 @@
 // import { TableRow, TableCell } from "material-ui/Table";
 // import Button from "material-ui/Button";
 // import Modal from "react-responsive-modal";
-// import { createRefetchContainer, graphql } from "react-relay";
+// import { createFragmentContainer, graphql } from "react-relay";
 //
 // class Prediction extends React.Component<{}> {
 //   render() {
@@ -13,12 +13,13 @@
 //   }
 // }
 //
-// export default createRefetchContainer(
+// export default createFragmentContainer(
 //   Prediction,
 //   {
 //     predictions: graphql`
-//       fragment Prediction_predictions on RootQueryType
-//         @argumentDefinitions(userId: { type: "String" }) {
+//       fragment Prediction_predictions on User
+//         @argumentDefinitions(id: { type: "String" }) {
+//         id
 //         playoffPredictions {
 //           team {
 //             name
@@ -44,7 +45,7 @@
 //   },
 //   {
 //     getVariables: props => ({
-//       userId: props.variables.userId,
+//       id: props.variables.userId,
 //     }),
 //   },
 // );

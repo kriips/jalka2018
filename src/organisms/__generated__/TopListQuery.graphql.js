@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 45e3cad302124b82ff3d1666df5b4a90
+ * @relayHash c69cd37e542c921a89dca09b1676ebb1
  */
 
 /* eslint-disable */
@@ -17,6 +17,7 @@ export type TopListQueryResponse = {|
   +users: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
+        +id: string,
         +username: ?string,
         +groupScore: ?number,
         +playoffScore: ?number,
@@ -35,10 +36,10 @@ query TopListQuery {
   users(first: 250) {
     edges {
       node {
+        id
         username
         groupScore
         playoffScore
-        id
       }
     }
   }
@@ -53,53 +54,88 @@ var v0 = {
   "args": null,
   "storageKey": null
 },
-v1 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "me",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "User",
-  "plural": false,
-  "selections": [
-    v0
-  ]
-},
-v2 = [
+v1 = [
   {
-    "kind": "Literal",
-    "name": "first",
-    "value": 250,
-    "type": "Int"
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "me",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "User",
+    "plural": false,
+    "selections": [
+      v0
+    ]
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "users",
+    "storageKey": "users(first:250)",
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "first",
+        "value": 250,
+        "type": "Int"
+      }
+    ],
+    "concreteType": "UserConnection",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "edges",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "UserEdge",
+        "plural": true,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "node",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              v0,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "username",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "groupScore",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "playoffScore",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
-],
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "groupScore",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "playoffScore",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TopListQuery",
   "id": null,
-  "text": "query TopListQuery {\n  me {\n    id\n  }\n  users(first: 250) {\n    edges {\n      node {\n        username\n        groupScore\n        playoffScore\n        id\n      }\n    }\n  }\n}\n",
+  "text": "query TopListQuery {\n  me {\n    id\n  }\n  users(first: 250) {\n    edges {\n      node {\n        id\n        username\n        groupScore\n        playoffScore\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -107,92 +143,15 @@ return {
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": [
-      v1,
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "users",
-        "storageKey": "users(first:250)",
-        "args": v2,
-        "concreteType": "UserConnection",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "edges",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "UserEdge",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "User",
-                "plural": false,
-                "selections": [
-                  v3,
-                  v4,
-                  v5
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": v1
   },
   "operation": {
     "kind": "Operation",
     "name": "TopListQuery",
     "argumentDefinitions": [],
-    "selections": [
-      v1,
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "users",
-        "storageKey": "users(first:250)",
-        "args": v2,
-        "concreteType": "UserConnection",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "edges",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "UserEdge",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "User",
-                "plural": false,
-                "selections": [
-                  v3,
-                  v4,
-                  v5,
-                  v0
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": v1
   }
 };
 })();
-(node/*: any*/).hash = 'c460bdd8436cb2196883468528613de2';
+(node/*: any*/).hash = 'd5c873d759390781a1438382b7c11f49';
 module.exports = node;

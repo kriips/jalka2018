@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { TableRow, TableCell } from "material-ui/Table";
 import Button from "material-ui/Button";
 import Modal from "react-responsive-modal";
+import { Prediction } from "./Prediction";
 
 export default class TopListRow extends React.Component<{}> {
   state = {
@@ -53,7 +54,10 @@ export default class TopListRow extends React.Component<{}> {
               Ennustus
             </Button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              {/*<Prediction />*/}
+              {/*<Prediction*/}
+              {/*key={this.props.userId}*/}
+              {/*userId={this.props.userId}*/}
+              {/*/>*/}
               Tuleb peatselt. Töö käib
             </Modal>
           </div>
