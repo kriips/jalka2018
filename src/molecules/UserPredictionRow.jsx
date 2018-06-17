@@ -87,7 +87,7 @@ export default class UserPredictionRow extends React.Component<{}> {
       (this.props.awayResult < this.props.homeResult &&
         this.props.prediction === this.props.homeTeam) ||
       (this.props.awayResult === this.props.homeResult &&
-        this.props.prediction === "Draw")
+        this.props.prediction === "Viik")
     ) {
       return "Green";
     } else if (!isNull(this.props.awayResult)) {
