@@ -4,6 +4,7 @@ import * as React from "react";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
 import addGroupPrediction from "../services/addGroupPrediction";
 import MaterialIcon, { colorPallet } from "material-icons-react";
+import isNull from "lodash/isNull";
 
 import Grid from "material-ui/Grid";
 
@@ -79,6 +80,23 @@ export default class UserPredictionRow extends React.Component<{}> {
     }
   };
 
+  getColor = () => {
+    if (
+      (this.props.awayResult > this.props.homeResult &&
+        this.props.prediction === this.props.awayTeam) ||
+      (this.props.awayResult < this.props.homeResult &&
+        this.props.prediction === this.props.homeTeam) ||
+      (this.props.awayResult === this.props.homeResult &&
+        this.props.prediction === "Draw")
+    ) {
+      return "Green";
+    } else if (!isNull(this.props.awayResult)) {
+      return "Red";
+    } else {
+      return "LightSlateGrey";
+    }
+  };
+
   render() {
     return (
       <Grid container justify="center" spacing={24}>
@@ -99,8 +117,8 @@ export default class UserPredictionRow extends React.Component<{}> {
               value={this.props.homeTeam}
               iconSize={20}
               iconInnerSize={9}
-              rootColor={"LightSlateGrey"}
-              pointColor={"Navy"}
+              rootColor={this.getColor()}
+              pointColor={this.getColor()}
             >
               {this.props.homeEmoji} {this.props.homeTeam}
             </RadioButton>
@@ -108,8 +126,8 @@ export default class UserPredictionRow extends React.Component<{}> {
               value="Viik"
               iconSize={20}
               iconInnerSize={9}
-              rootColor={"LightSlateGrey"}
-              pointColor={"Navy"}
+              rootColor={this.getColor()}
+              pointColor={this.getColor()}
             >
               Viik
             </RadioButton>
@@ -117,8 +135,8 @@ export default class UserPredictionRow extends React.Component<{}> {
               value={this.props.awayTeam}
               iconSize={20}
               iconInnerSize={9}
-              rootColor={"LightSlateGrey"}
-              pointColor={"Navy"}
+              rootColor={this.getColor()}
+              pointColor={this.getColor()}
             >
               {this.props.awayTeam} {this.props.awayEmoji}
             </RadioButton>

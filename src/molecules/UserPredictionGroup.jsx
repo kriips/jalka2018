@@ -14,6 +14,8 @@ export default class UserPredictionGroup extends React.Component<{}> {
           matchId={match.node.id}
           matchName={match.node.name}
           awayTeam={match.node.awayTeam.name}
+          awayResult={match.node.awayResult}
+          homeResult={match.node.homeResult}
           awayTeamId={parseInt(match.node.awayTeam.id)}
           homeTeam={match.node.homeTeam.name}
           homeTeamId={match.node.homeTeam.id}
