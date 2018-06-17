@@ -1,7 +1,8 @@
 defmodule PokedexWeb.Resolvers.MatchesResolver do
-  import Ecto.Query, only: [where: 3]
-  alias Pokedex.{Repo, Football.Match}
+  import Ecto.Query, only: [where: 2, where: 3, from: 2]
+  alias Pokedex.{Repo, Football.Team, Football.Match, Football.GroupPrediction}
   alias Absinthe.Relay.Connection
+  alias Pokedex.Accounts.User
 
   def match_name(_, %{source: %{slug: slug}}) do
     {:ok, String.capitalize(slug)}
