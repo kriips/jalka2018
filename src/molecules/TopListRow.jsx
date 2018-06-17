@@ -12,7 +12,6 @@ export default class TopListRow extends React.Component<{}> {
   };
 
   onOpenModal = () => {
-    console.log(this.props);
     this.setState({
       open: true,
     });
@@ -30,19 +29,19 @@ export default class TopListRow extends React.Component<{}> {
     return (
       <TableRow>
         <TableCell>
-          <div>1.</div>
+          <div>{this.props.position}.</div>
         </TableCell>
         <TableCell>
           <div>{this.props.username}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{this.props.groupScore}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{this.props.playoffScore}</div>
         </TableCell>
         <TableCell>
-          <div>0</div>
+          <div>{+this.props.groupScore + +this.props.playoffScore}</div>
         </TableCell>
         <TableCell>
           <div>

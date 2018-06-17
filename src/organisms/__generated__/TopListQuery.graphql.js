@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 64ffa3175eaeeefb96ff932632a2e1b2
+ * @relayHash 45e3cad302124b82ff3d1666df5b4a90
  */
 
 /* eslint-disable */
@@ -18,6 +18,8 @@ export type TopListQueryResponse = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +username: ?string,
+        +groupScore: ?number,
+        +playoffScore: ?number,
       |},
     |}>,
   |},
@@ -34,6 +36,8 @@ query TopListQuery {
     edges {
       node {
         username
+        groupScore
+        playoffScore
         id
       }
     }
@@ -75,13 +79,27 @@ v3 = {
   "name": "username",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "groupScore",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "playoffScore",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TopListQuery",
   "id": null,
-  "text": "query TopListQuery {\n  me {\n    id\n  }\n  users(first: 250) {\n    edges {\n      node {\n        username\n        id\n      }\n    }\n  }\n}\n",
+  "text": "query TopListQuery {\n  me {\n    id\n  }\n  users(first: 250) {\n    edges {\n      node {\n        username\n        groupScore\n        playoffScore\n        id\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -118,7 +136,9 @@ return {
                 "concreteType": "User",
                 "plural": false,
                 "selections": [
-                  v3
+                  v3,
+                  v4,
+                  v5
                 ]
               }
             ]
@@ -161,6 +181,8 @@ return {
                 "plural": false,
                 "selections": [
                   v3,
+                  v4,
+                  v5,
                   v0
                 ]
               }
@@ -172,5 +194,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '06bc75bf36aa7f54c02bb4a182671345';
+(node/*: any*/).hash = 'c460bdd8436cb2196883468528613de2';
 module.exports = node;

@@ -17,6 +17,8 @@ const topListQuery = graphql`
       edges {
         node {
           username
+          groupScore
+          playoffScore
         }
       }
     }

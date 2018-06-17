@@ -29,4 +29,22 @@ defmodule PokedexWeb.Schema.Matches do
       resolve(&MatchesResolver.list_matches/2)
     end
   end
+
+
+  object :matches_mutations do
+    payload field(:update_match_result) do
+      input do
+        field(:match_id, non_null(:id))
+        field(:home_result, non_null(:integer))
+        field(:away_result, non_null(:integer))
+      end
+
+      output do
+        field :result, :string
+        field :match, :match
+      end
+
+      resolve(&MatchesResolver.update_match_result/2)
+    end
+  end
 end

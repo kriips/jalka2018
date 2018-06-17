@@ -7,6 +7,8 @@ defmodule PokedexWeb.Schema.Accounts do
 
   node object(:user) do
     field(:username, :string)
+    field(:group_score, :integer)
+    field(:playoff_score, :integer)
     field(:group_predictions, list_of(:group_prediction) , resolve: dataloader(:repo))
     field(:playoff_predictions, list_of(:playoff_prediction), resolve: dataloader(:repo))
   end

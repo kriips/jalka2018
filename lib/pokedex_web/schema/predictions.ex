@@ -45,7 +45,6 @@ defmodule PokedexWeb.Schema.Predictions do
     end
   end
 
-
   object :group_prediction_mutations do
     payload field(:add_group_prediction) do
       input do
