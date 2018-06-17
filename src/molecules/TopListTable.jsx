@@ -21,8 +21,7 @@ export default class TopListTable extends React.Component<{}> {
       };
     });
     flatUsers = flatUsers.sort((a, b) => {
-      console.log({ a, b });
-      return a.groupScore + a.playoffScore < b.groupScore + b.playoffScore;
+      return b.groupScore + b.playoffScore - (a.groupScore + a.playoffScore);
     });
 
     let sequence = 0;
@@ -37,9 +36,7 @@ export default class TopListTable extends React.Component<{}> {
       sequence++;
     });
 
-    console.log("flatUsers", flatUsers);
     flatUsers.forEach(user => {
-      console.log("user", user);
       usersElements.push(
         <TopListRow
           username={user.username}
@@ -54,7 +51,6 @@ export default class TopListTable extends React.Component<{}> {
   };
 
   render() {
-    console.log("props", this.props);
     return (
       <Table>
         <TableHead>

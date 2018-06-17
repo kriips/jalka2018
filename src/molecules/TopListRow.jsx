@@ -12,7 +12,6 @@ export default class TopListRow extends React.Component<{}> {
   };
 
   onOpenModal = () => {
-    console.log(this.props);
     this.setState({
       open: true,
     });
