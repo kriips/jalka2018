@@ -6,6 +6,8 @@ import Button from "material-ui/Button";
 import Modal from "react-responsive-modal";
 import { Prediction } from "./Prediction";
 
+import { createFragmentContainer, graphql } from "react-relay";
+
 export default class TopListRow extends React.Component<{}> {
   state = {
     open: false,
@@ -54,10 +56,7 @@ export default class TopListRow extends React.Component<{}> {
               Ennustus
             </Button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              {/*<Prediction*/}
-              {/*key={this.props.userId}*/}
-              {/*userId={this.props.userId}*/}
-              {/*/>*/}
+              <Prediction key={this.props.userId} userId={this.props.userId} />
               Tuleb peatselt. Töö käib
             </Modal>
           </div>
