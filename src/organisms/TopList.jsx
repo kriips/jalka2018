@@ -20,7 +20,6 @@ const topListQuery = graphql`
           username
           groupScore
           playoffScore
-          ...Prediction_predictions
         }
       }
     }

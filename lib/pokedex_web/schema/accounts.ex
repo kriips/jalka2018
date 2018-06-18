@@ -16,7 +16,13 @@ defmodule PokedexWeb.Schema.Accounts do
   connection(node_type: :user)
 
   object :accounts do
-    connection field(:users, node_type: :user) do
+    field :user, :user do
+      arg :id, non_null(:id)
+      resolve &AccountsResolver.find_user/3
+    end
+
+
+  connection field(:users, node_type: :user) do
       resolve(&AccountsResolver.list_users/2)
     end
 

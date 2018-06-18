@@ -1,50 +1,33 @@
 // @flow
 
 import React from "react";
-import { createFragmentContainer, graphql } from "react-relay";
-import Prediction_predictions from "./__generated__/Prediction_predictions";
+import { graphql } from "react-relay";
+import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
+import withRelayData from "../services/withRelayData";
+import PredictionQuery from "./__generated__/PredictionQuery";
+import { PredictionDetails } from "./PredictionDetails";
 
-type PropsType = {
-  event: Prediction_predictions,
+const predictionsQuery = graphql`
+  query PredictionQuery($id: ID!) {
+    user(id: $id) {
+      id
+      username
+      groupScore
+      playoffScore
+    }
+  }
+`;
+
+const getVars = () => {
+  return { ["id"]: 1 };
 };
 
-export class Prediction extends React.Component<PropsType> {
-  render() {
-    console.log(this.props);
-    return <div />;
-  }
-}
-
-export default createFragmentContainer(
-  Prediction,
-  graphql`
-    fragment Prediction_predictions on User {
-      id
-      playoffPredictions {
-        team {
-          name
-          emojiString
-        }
-        phase
-      }
-      groupPredictions {
-        prediction
-        match {
-          awayTeam {
-            emojiString
-            name
-          }
-          homeTeam {
-            emojiString
-            name
-          }
-        }
-      }
-    }
-  `,
-  {
-    getVariables: props => ({
-      userId: props.variables.userId,
-    }),
-  },
+export const Prediction = withRelayEnvironmentContext(
+  withRelayData(
+    (props: PredictionQuery & Object) => (
+      <PredictionDetails {...props} query={props} />
+    ),
+    predictionsQuery,
+    getVars(),
+  ),
 );

@@ -29,6 +29,7 @@ export default class TopListRow extends React.Component<{}> {
 
   render() {
     const { open } = this.state;
+    console.log("thi.props.relay", this.props.relay);
     return (
       <TableRow>
         <TableCell>

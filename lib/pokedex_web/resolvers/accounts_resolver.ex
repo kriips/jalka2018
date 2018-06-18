@@ -10,6 +10,15 @@ defmodule PokedexWeb.Resolvers.AccountsResolver do
     |> Connection.from_query(&Repo.all/1, args)
   end
 
+  def find_user(_parent, %{id: id}, _resolution) do
+    case Pokedex.Accounts.get_user!(id) do
+      nil ->
+        {:error, "User ID #{id} not found"}
+      user ->
+        {:ok, user}
+    end
+  end
+
   def current_user(_, %{context: %{current_user: current_user}}) do
     {:ok, current_user}
   end
