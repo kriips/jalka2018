@@ -25,13 +25,9 @@ export class PredictionDetails extends React.PureComponent<{}> {
       (prediction.homeResult < prediction.awayResult &&
         prediction.prediction === prediction.awayName)
     ) {
-      return (
-        <MaterialIcon key="true" icon="done" color={colorPallet.green._200} />
-      );
+      return <MaterialIcon icon="done" color={colorPallet.green._200} />;
     } else {
-      return (
-        <MaterialIcon key="false" icon="clear" color={colorPallet.red._200} />
-      );
+      return <MaterialIcon icon="clear" color={colorPallet.red._200} />;
     }
   };
 
@@ -61,8 +57,8 @@ export class PredictionDetails extends React.PureComponent<{}> {
     sortedPreds.forEach(pred => {
       groupPreds.push(
         <ListItem key={pred.matchId} dense>
-          <ListItemText key={pred.matchId}>
-            <span key="description">
+          <ListItemText>
+            <span>
               {pred.matchName}. {pred.homeEmoji} {pred.homeName}{" "}
               {pred.homeResult !== null ? pred.homeResult : ""} -{" "}
               {pred.awayResult !== null ? pred.awayResult : ""} {pred.awayName}{" "}
@@ -92,8 +88,8 @@ export class PredictionDetails extends React.PureComponent<{}> {
     let phaseElements = [];
     forEach(phaseKeys, phaseKey => {
       phaseElements.push(
-        <ListItem key={phaseKey} dense>
-          <ListItemText key={phaseKey}>
+        <ListItem dense>
+          <ListItemText>
             <Typography variant="subheading" gutterBottom>
               1/{phaseKey}: {this.phaseTeams(phases[phaseKey]).join(", ")}
             </Typography>
@@ -112,24 +108,16 @@ export class PredictionDetails extends React.PureComponent<{}> {
     return (
       <div>
         <Tabs value={this.state.tabIndex} onChange={this.handleTabChange}>
-          <Tab key="0" value="0" label="Grupimängud" />
-          <Tab key="1" value="1" label="Playoffid" />
+          <Tab value="0" label="Grupimängud" />
+          <Tab value="1" label="Playoffid" />
         </Tabs>
         {this.state.tabIndex === "0" && (
-          <List
-            key="group"
-            dense
-            style={{ maxHeight: "70vh", overflow: "auto" }}
-          >
+          <List dense style={{ maxHeight: "70vh", overflow: "auto" }}>
             {this.renderGroups()}
           </List>
         )}
         {this.state.tabIndex === "1" && (
-          <List
-            key="playoff"
-            dense
-            style={{ maxHeight: "70vh", overflow: "auto" }}
-          >
+          <List dense style={{ maxHeight: "70vh", overflow: "auto" }}>
             {this.renderPlayoffs()}
           </List>
         )}
