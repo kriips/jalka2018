@@ -75,7 +75,11 @@ export class PredictionDetails extends React.PureComponent<{}> {
   phaseTeams = preds => {
     var predElements = [];
     preds.forEach(pred => {
-      predElements.push(`${pred.team.emojiString}${pred.team.name}`);
+      predElements.push(
+        <div>
+          {pred.team.emojiString} {pred.team.name}
+        </div>,
+      );
     });
     return predElements;
   };
@@ -91,7 +95,8 @@ export class PredictionDetails extends React.PureComponent<{}> {
         <ListItem dense>
           <ListItemText>
             <Typography variant="subheading" gutterBottom>
-              1/{phaseKey}: {this.phaseTeams(phases[phaseKey]).join(", ")}
+              1/{phaseKey}:
+              {this.phaseTeams(phases[phaseKey])}
             </Typography>
           </ListItemText>
         </ListItem>,
@@ -112,12 +117,28 @@ export class PredictionDetails extends React.PureComponent<{}> {
           <Tab value="1" label="Playoffid" />
         </Tabs>
         {this.state.tabIndex === "0" && (
-          <List dense style={{ maxHeight: "70vh", overflow: "auto" }}>
+          <List
+            dense
+            style={{
+              minHeight: "70vh",
+              maxHeight: "70vh",
+              width: "70vw",
+              overflow: "auto",
+            }}
+          >
             {this.renderGroups()}
           </List>
         )}
         {this.state.tabIndex === "1" && (
-          <List dense style={{ maxHeight: "70vh", overflow: "auto" }}>
+          <List
+            dense
+            style={{
+              minHeight: "70vh",
+              maxHeight: "70vh",
+              width: "70vw",
+              overflow: "auto",
+            }}
+          >
             {this.renderPlayoffs()}
           </List>
         )}
