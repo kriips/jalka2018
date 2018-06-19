@@ -92,7 +92,7 @@ export class PredictionDetails extends React.PureComponent<{}> {
     let phaseElements = [];
     forEach(phaseKeys, phaseKey => {
       phaseElements.push(
-        <ListItem dense>
+        <ListItem>
           <ListItemText>
             <Typography variant="subheading" gutterBottom>
               1/{phaseKey}:
@@ -118,7 +118,6 @@ export class PredictionDetails extends React.PureComponent<{}> {
         </Tabs>
         {this.state.tabIndex === "0" && (
           <List
-            dense
             style={{
               minHeight: "70vh",
               maxHeight: "70vh",
@@ -131,7 +130,6 @@ export class PredictionDetails extends React.PureComponent<{}> {
         )}
         {this.state.tabIndex === "1" && (
           <List
-            dense
             style={{
               minHeight: "70vh",
               maxHeight: "70vh",
