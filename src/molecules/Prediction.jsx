@@ -20,6 +20,10 @@ const predictionsQuery = graphql`
       groupPredictions {
         prediction
         match {
+          id
+          name
+          awayResult
+          homeResult
           awayTeam {
             emojiString
             name

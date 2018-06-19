@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fa482644db0556c1fd3acdfac30d104a
+ * @relayHash 3394e1475aa537e3fd84827ffa20351d
  */
 
 /* eslint-disable */
@@ -26,6 +26,10 @@ export type PredictionQueryResponse = {|
     +groupPredictions: ?$ReadOnlyArray<?{|
       +prediction: ?string,
       +match: ?{|
+        +id: string,
+        +name: ?string,
+        +awayResult: ?number,
+        +homeResult: ?number,
         +awayTeam: ?{|
           +emojiString: ?string,
           +name: ?string,
@@ -60,6 +64,10 @@ query PredictionQuery(
     groupPredictions {
       prediction
       match {
+        id
+        name
+        awayResult
+        homeResult
         awayTeam {
           emojiString
           name
@@ -70,7 +78,6 @@ query PredictionQuery(
           name
           id
         }
-        id
       }
       id
     }
@@ -137,11 +144,25 @@ v7 = {
   "args": null,
   "storageKey": null
 },
-v8 = [
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "awayResult",
+  "args": null,
+  "storageKey": null
+},
+v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "homeResult",
+  "args": null,
+  "storageKey": null
+},
+v10 = [
   v5,
   v4
 ],
-v9 = [
+v11 = [
   v5,
   v4,
   v2
@@ -151,7 +172,7 @@ return {
   "operationKind": "query",
   "name": "PredictionQuery",
   "id": null,
-  "text": "query PredictionQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n    username\n    playoffPredictions {\n      team {\n        name\n        emojiString\n        id\n      }\n      phase\n      id\n    }\n    groupPredictions {\n      prediction\n      match {\n        awayTeam {\n          emojiString\n          name\n          id\n        }\n        homeTeam {\n          emojiString\n          name\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query PredictionQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n    username\n    playoffPredictions {\n      team {\n        name\n        emojiString\n        id\n      }\n      phase\n      id\n    }\n    groupPredictions {\n      prediction\n      match {\n        id\n        name\n        awayResult\n        homeResult\n        awayTeam {\n          emojiString\n          name\n          id\n        }\n        homeTeam {\n          emojiString\n          name\n          id\n        }\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -215,6 +236,10 @@ return {
                 "concreteType": "Match",
                 "plural": false,
                 "selections": [
+                  v2,
+                  v4,
+                  v8,
+                  v9,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -223,7 +248,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v8
+                    "selections": v10
                   },
                   {
                     "kind": "LinkedField",
@@ -233,7 +258,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v8
+                    "selections": v10
                   }
                 ]
               }
@@ -305,6 +330,10 @@ return {
                 "concreteType": "Match",
                 "plural": false,
                 "selections": [
+                  v2,
+                  v4,
+                  v8,
+                  v9,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -313,7 +342,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v9
+                    "selections": v11
                   },
                   {
                     "kind": "LinkedField",
@@ -323,9 +352,8 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v9
-                  },
-                  v2
+                    "selections": v11
+                  }
                 ]
               },
               v2
@@ -337,5 +365,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'a5a4f836af9e7e8094c007cd658ed47f';
+(node/*: any*/).hash = '32fc784edad1978dd4cbbff904f163f8';
 module.exports = node;

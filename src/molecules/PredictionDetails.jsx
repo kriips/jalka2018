@@ -1,27 +1,140 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+import { Tabs, Tab } from "@material-ui/core";
+import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
+import { colorPallet } from "material-icons-react";
+import MaterialIcon from "material-icons-react";
+import groupBy from "lodash/groupBy";
+import keys from "lodash/keys";
+import forEach from "lodash/forEach";
 
-export class PredictionDetails extends React.Component<{}> {
+export class PredictionDetails extends React.PureComponent<{}> {
+  state = {
+    tabIndex: "0",
+  };
+
+  getPredIcon = prediction => {
+    if (prediction.homeResult === null) {
+      return;
+    } else if (
+      (prediction.homeResult === prediction.awayResult &&
+        prediction.prediction === "Viik") ||
+      (prediction.homeResult > prediction.awayResult &&
+        prediction.prediction === prediction.homeName) ||
+      (prediction.homeResult < prediction.awayResult &&
+        prediction.prediction === prediction.awayName)
+    ) {
+      return (
+        <MaterialIcon key="true" icon="done" color={colorPallet.green._200} />
+      );
+    } else {
+      return (
+        <MaterialIcon key="false" icon="clear" color={colorPallet.red._200} />
+      );
+    }
+  };
+
+  sortMatches = preds => {
+    return preds.sort((a, b) => {
+      return a.matchName - b.matchName;
+    });
+  };
+
   renderGroups = () => {
     let groupPreds = [];
-    this.props.user.groupPredictions.forEach(pred => {
+    let flatMatches = this.props.user.groupPredictions.map(pred => {
+      return {
+        matchId: pred.match.id,
+        matchName: pred.match.name,
+        homeEmoji: pred.match.homeTeam.emojiString,
+        awayEmoji: pred.match.awayTeam.emojiString,
+        homeName: pred.match.homeTeam.name,
+        awayName: pred.match.awayTeam.name,
+        homeResult: pred.match.homeResult,
+        awayResult: pred.match.awayResult,
+        prediction: pred.prediction,
+      };
+    });
+    let sortedPreds = this.sortMatches(flatMatches);
+
+    sortedPreds.forEach(pred => {
       groupPreds.push(
-        <li className="mdc-list-item">
-          {pred.match.homeTeam.name}-{pred.match.awayTeam.name}
-        </li>,
+        <ListItem key={pred.matchId} dense>
+          <ListItemText key={pred.matchId}>
+            <span key="description">
+              {pred.matchName}. {pred.homeEmoji} {pred.homeName}{" "}
+              {pred.homeResult !== null ? pred.homeResult : ""} -{" "}
+              {pred.awayResult !== null ? pred.awayResult : ""} {pred.awayName}{" "}
+              {pred.awayEmoji}: {pred.prediction}
+            </span>
+            {this.getPredIcon(pred)}
+          </ListItemText>
+        </ListItem>,
       );
     });
     return groupPreds;
   };
 
+  phaseTeams = preds => {
+    var predElements = [];
+    preds.forEach(pred => {
+      console.log("pr", pred);
+      predElements.push(`${pred.team.emojiString}${pred.team.name}`);
+    });
+    console.log("pred", predElements);
+    return predElements;
+  };
+
+  renderPlayoffs = () => {
+    let phases = groupBy(this.props.user.playoffPredictions, prediction => {
+      return prediction.phase;
+    });
+    let phaseKeys = keys(phases).sort((a, b) => b - a);
+    let phaseElements = [];
+    forEach(phaseKeys, phaseKey => {
+      phaseElements.push(
+        <ListItem key={phaseKey} dense>
+          <ListItemText key={phaseKey}>
+            <Typography variant="subheading" gutterBottom>
+              1/{phaseKey}: {this.phaseTeams(phases[phaseKey]).join(", ")}
+            </Typography>
+          </ListItemText>
+        </ListItem>,
+      );
+    });
+    return phaseElements;
+  };
+
+  handleTabChange = (event, value) => {
+    this.setState({ tabIndex: value });
+  };
+
   render() {
-    console.log(this.props);
     return (
       <div>
-        <h1>{this.props.user.username}</h1>
-        <h3>Grupimängude ennustus</h3>
-        <ul className="mdc-list">{this.renderGroups()}</ul>
+        <Tabs value={this.state.tabIndex} onChange={this.handleTabChange}>
+          <Tab key="0" value="0" label="Grupimängud" />
+          <Tab key="1" value="1" label="Playoffid" />
+        </Tabs>
+        {this.state.tabIndex === "0" && (
+          <List
+            key="group"
+            dense
+            style={{ maxHeight: "70vh", overflow: "auto" }}
+          >
+            {this.renderGroups()}
+          </List>
+        )}
+        {this.state.tabIndex === "1" && (
+          <List
+            key="playoff"
+            dense
+            style={{ maxHeight: "70vh", overflow: "auto" }}
+          >
+            {this.renderPlayoffs()}
+          </List>
+        )}
       </div>
     );
   }

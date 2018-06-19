@@ -5,6 +5,7 @@ import { TableRow, TableCell } from "material-ui/Table";
 import Button from "material-ui/Button";
 import Modal from "react-responsive-modal";
 import Prediction from "./Prediction";
+import PaperSheet from "../atoms/PaperSheet";
 
 import { createFragmentContainer, graphql } from "react-relay";
 
@@ -56,8 +57,12 @@ export default class TopListRow extends React.Component<{}> {
               Ennustus
             </Button>
             <Modal open={open} onClose={this.onCloseModal} center>
-              <Prediction key={this.props.userId} userId={this.props.userId} />
-              Tuleb peatselt. Töö käib
+              <PaperSheet headline={this.props.username}>
+                <Prediction
+                  key={this.props.userId}
+                  userId={this.props.userId}
+                />
+              </PaperSheet>
             </Modal>
           </div>
         </TableCell>
