@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from "react";
-import UserPredictionGroup from "./UserPredictionGroup";
-import groupBy from "lodash/groupBy";
 import filter from "lodash/filter";
-import forEach from "lodash/forEach";
-import find from "lodash/find";
 import PlayoffPredictionPhase from "./PlayoffPredictionPhase";
 
 const phases = [
