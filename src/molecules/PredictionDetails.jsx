@@ -79,10 +79,8 @@ export class PredictionDetails extends React.PureComponent<{}> {
   phaseTeams = preds => {
     var predElements = [];
     preds.forEach(pred => {
-      console.log("pr", pred);
       predElements.push(`${pred.team.emojiString}${pred.team.name}`);
     });
-    console.log("pred", predElements);
     return predElements;
   };
 
