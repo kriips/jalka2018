@@ -2,9 +2,7 @@
 
 import React from "react";
 import { graphql } from "react-relay";
-import withRelayEnvironmentContext from "../services/withRelayEnvironmentContext";
 import withRelayData from "../services/withRelayData";
-import PredictionQuery from "./__generated__/PredictionQuery";
 import { PredictionDetails } from "./PredictionDetails";
 
 const predictionsQuery = graphql`
@@ -12,22 +10,40 @@ const predictionsQuery = graphql`
     user(id: $id) {
       id
       username
-      groupScore
-      playoffScore
+      playoffPredictions {
+        team {
+          name
+          emojiString
+        }
+        phase
+      }
+      groupPredictions {
+        prediction
+        match {
+          awayTeam {
+            emojiString
+            name
+          }
+          homeTeam {
+            emojiString
+            name
+          }
+        }
+      }
     }
   }
 `;
 
-const getVars = () => {
-  return { ["id"]: 1 };
-};
-
-export const Prediction = withRelayEnvironmentContext(
-  withRelayData(
-    (props: PredictionQuery & Object) => (
-      <PredictionDetails {...props} query={props} />
-    ),
-    predictionsQuery,
-    getVars(),
-  ),
-);
+export default class Prediction extends React.Component<{}> {
+  render() {
+    let rawId = atob(this.props.userId);
+    const InnerPrediction = withRelayData(
+      props => <PredictionDetails {...props} />,
+      predictionsQuery,
+      {
+        id: rawId.split(":")[1],
+      },
+    );
+    return <InnerPrediction />;
+  }
+}

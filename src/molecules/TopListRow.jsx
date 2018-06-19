@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { TableRow, TableCell } from "material-ui/Table";
 import Button from "material-ui/Button";
 import Modal from "react-responsive-modal";
-import { Prediction } from "./Prediction";
+import Prediction from "./Prediction";
 
 import { createFragmentContainer, graphql } from "react-relay";
 
@@ -29,7 +29,6 @@ export default class TopListRow extends React.Component<{}> {
 
   render() {
     const { open } = this.state;
-    console.log("thi.props.relay", this.props.relay);
     return (
       <TableRow>
         <TableCell>

@@ -79,8 +79,6 @@ export default function withRelayData(
     render() {
       let render = this.renderContent;
       const { classes, variables, ...customProps } = this.props;
-      console.log("rootvar", rootVariables);
-      console.log("var", variables);
 
       if (customProps) {
         // WithRelayData component doesn't expect any props by itself.
