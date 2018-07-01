@@ -6,6 +6,7 @@ defmodule PokedexWeb.Schema.Predictions do
 
   alias PokedexWeb.Resolvers.GroupPredictionsResolver
   alias PokedexWeb.Resolvers.PlayoffPredictionsResolver
+  alias PokedexWeb.Resolvers.PlayoffResultsResolver
 
   node object(:group_prediction) do
     field(:user, :user, resolve: dataloader(:repo))
@@ -28,6 +29,11 @@ defmodule PokedexWeb.Schema.Predictions do
 
   node object(:playoff_prediction) do
     field(:user, :user, resolve: dataloader(:repo))
+    field(:phase, :integer)
+    field(:team, :team, resolve: dataloader(:repo))
+  end
+
+  node object(:playoff_result) do
     field(:phase, :integer)
     field(:team, :team, resolve: dataloader(:repo))
   end
@@ -87,6 +93,35 @@ defmodule PokedexWeb.Schema.Predictions do
       end
 
       resolve(&PlayoffPredictionsResolver.remove_playoff_prediction/2)
+    end
+  end
+
+  object :playoff_result_mutations do
+    payload field(:add_playoff_result) do
+      input do
+        field(:team_id, non_null(:id))
+        field(:phase, non_null(:integer))
+      end
+
+      output do
+        field :result, :string
+        field :playoff_result, :playoff_result
+      end
+
+      resolve(&PlayoffResultsResolver.add_playoff_result/2)
+    end
+
+    payload field(:remove_playoff_result) do
+      input do
+        field(:team_id, non_null(:id))
+        field(:phase, non_null(:integer))
+      end
+
+      output do
+        field :result, :string
+      end
+
+      resolve(&PlayoffResultsResolver.remove_playoff_result/2)
     end
   end
 end

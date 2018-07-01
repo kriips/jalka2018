@@ -42,6 +42,7 @@ defmodule PokedexWeb.Schema do
     import_fields(:accounts_mutations)
     import_fields(:group_prediction_mutations)
     import_fields(:playoff_prediction_mutations)
+    import_fields(:playoff_result_mutations)
     import_fields(:matches_mutations)
   end
 

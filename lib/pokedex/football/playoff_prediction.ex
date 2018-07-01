@@ -14,9 +14,9 @@ defmodule Pokedex.Football.PlayoffPrediction do
   end
 
   @doc false
-  def changeset(group_prediction, attrs) do
-    group_prediction
-    |> cast(attrs, [:user, :match, :prediction])
+  def changeset(playoff_prediction, attrs) do
+    playoff_prediction
+    |> cast(attrs, [:user_id, :team_id, :phase])
   end
 
   def get_playoff_prediction!(id) do
