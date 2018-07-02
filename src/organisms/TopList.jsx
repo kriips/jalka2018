@@ -32,28 +32,3 @@ export const TopList = withRelayEnvironmentContext(
     topListQuery,
   ),
 );
-
-// const topListQuery = graphql`
-//   query TopListQuery {
-//     me {
-//       id
-//     }
-//     users(first: 250) {
-//       edges {
-//         node {
-//           id
-//           username
-//           groupScore
-//           playoffScore
-//         }
-//       }
-//     }
-//   }
-// `;
-//
-// export const TopList = withRelayEnvironmentContext(
-//   withRelayData(
-//     (props: TopListQuery & Object) => <TopListTable {...props} query={props} />,
-//     topListQuery,
-//   ),
-// );

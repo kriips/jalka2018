@@ -41,7 +41,7 @@ defmodule PokedexWeb.Resolvers.MatchesResolver do
   def update_results(match) do
 #   nullify current scores
     User
-    |> Repo.update_all(set: [group_score: 0, playoff_score: 0])
+    |> Repo.update_all(set: [group_score: 0])
 
 #   go through all finished matches and change the score on all right predictions
     query =

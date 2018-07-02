@@ -78,7 +78,6 @@ export default function withRelayData(
 
     render() {
       let render = this.renderContent;
-
       const { classes, variables, ...customProps } = this.props;
 
       if (customProps) {

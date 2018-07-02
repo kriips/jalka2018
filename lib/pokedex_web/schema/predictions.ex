@@ -6,6 +6,7 @@ defmodule PokedexWeb.Schema.Predictions do
 
   alias PokedexWeb.Resolvers.GroupPredictionsResolver
   alias PokedexWeb.Resolvers.PlayoffPredictionsResolver
+  alias PokedexWeb.Resolvers.PlayoffResultsResolver
 
   node object(:group_prediction) do
     field(:user, :user, resolve: dataloader(:repo))
@@ -34,13 +35,31 @@ defmodule PokedexWeb.Schema.Predictions do
 
   connection(node_type: :playoff_prediction)
 
+  node object(:playoff_result) do
+    field(:phase, :integer)
+    field(:team, :team, resolve: dataloader(:repo))
+  end
+
+  connection(node_type: :playoff_result)
+
+  object :playoff_results do
+    connection field(:playoff_results, node_type: :playoff_result) do
+      arg(:search_term, :string)
+      resolve(&PlayoffResultsResolver.list_playoff_results/2)
+    end
+
+    field(:playoff_results_array, list_of(:playoff_results)) do
+      resolve(&PlayoffPredictionsResolver.list_playoff_results/2)
+    end
+  end
+
   object :playoff_predictions do
     connection field(:playoff_predictions, node_type: :playoff_prediction) do
       arg(:search_term, :string)
       resolve(&PlayoffPredictionsResolver.list_playoff_predictions/2)
     end
 
-    field(:group_predictions_array, list_of(:group_predictions)) do
+    field(:playoff_predictions_array, list_of(:playoff_predictions)) do
       resolve(&PlayoffPredictionsResolver.list_playoff_predictions/2)
     end
   end
@@ -87,6 +106,35 @@ defmodule PokedexWeb.Schema.Predictions do
       end
 
       resolve(&PlayoffPredictionsResolver.remove_playoff_prediction/2)
+    end
+  end
+
+  object :playoff_result_mutations do
+    payload field(:add_playoff_result) do
+      input do
+        field(:team_id, non_null(:id))
+        field(:phase, non_null(:integer))
+      end
+
+      output do
+        field :result, :string
+        field :playoff_result, :playoff_result
+      end
+
+      resolve(&PlayoffResultsResolver.add_playoff_result/2)
+    end
+
+    payload field(:remove_playoff_result) do
+      input do
+        field(:team_id, non_null(:id))
+        field(:phase, non_null(:integer))
+      end
+
+      output do
+        field :result, :string
+      end
+
+      resolve(&PlayoffResultsResolver.remove_playoff_result/2)
     end
   end
 end

@@ -7,6 +7,17 @@ import { PredictionDetails } from "./PredictionDetails";
 
 const predictionsQuery = graphql`
   query PredictionQuery($id: ID!) {
+    playoffResults(first: 1000) {
+      edges {
+        node {
+          phase
+          team {
+            name
+            id
+          }
+        }
+      }
+    }
     user(id: $id) {
       id
       username
