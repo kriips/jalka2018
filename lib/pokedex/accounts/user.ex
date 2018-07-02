@@ -44,24 +44,4 @@ defmodule Pokedex.Accounts.User do
     end
   end
 
-  defp allowed_user_match(changeset) do
-    case get_allowed_user(get_field(changeset, :username)) do
-      nil ->
-        username_not_allowed_error(changeset)
-      _ ->
-        IO.puts "Allowed user matched: " <> get_field(changeset, :username)
-        changeset
-    end
-  end
-
-  defp get_allowed_user(username) do
-    AllowedUser
-    |> where([u], u.username == ^username)
-    |> Repo.one()
-    |> IO.inspect(label: "Allowed user found")
-  end
-
-  defp username_not_allowed_error(changeset) do
-    add_error(changeset, :username, "peaks olema S! nimekirjast")
-  end
 end
