@@ -49,7 +49,7 @@ defmodule PokedexWeb.Schema.Predictions do
     end
 
     field(:playoff_results_array, list_of(:playoff_results)) do
-      resolve(&PlayoffPredictionsResolver.list_playoff_results/2)
+      resolve(&PlayoffResultsResolver.list_playoff_results/2)
     end
   end
 
