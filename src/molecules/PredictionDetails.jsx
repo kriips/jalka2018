@@ -57,7 +57,7 @@ export class PredictionDetails extends React.PureComponent<{}> {
     sortedPreds.forEach(pred => {
       groupPreds.push(
         <ListItem key={pred.matchId} dense>
-          <ListItemText>
+          <ListItemText key={pred.matchId}>
             <span>
               {pred.matchName}. {pred.homeEmoji} {pred.homeName}{" "}
               {pred.homeResult !== null ? pred.homeResult : ""} -{" "}
@@ -72,13 +72,23 @@ export class PredictionDetails extends React.PureComponent<{}> {
     return groupPreds;
   };
 
-  phaseTeams = preds => {
+  phaseTeams = (preds, phase, results) => {
     var predElements = [];
     preds.forEach(pred => {
+      let color = "black";
+      results.forEach(result => {
+        if (
+          +result.node.phase === +phase &&
+          pred.team.name === result.node.team.name
+        ) {
+          color = "green";
+        }
+      });
       predElements.push(
-        <div>
+        <span key={pred.team.name} style={{ color: color }}>
+          <br />
           {pred.team.emojiString} {pred.team.name}
-        </div>,
+        </span>,
       );
     });
     return predElements;
@@ -92,11 +102,15 @@ export class PredictionDetails extends React.PureComponent<{}> {
     let phaseElements = [];
     forEach(phaseKeys, phaseKey => {
       phaseElements.push(
-        <ListItem>
-          <ListItemText>
-            <Typography variant="subheading" gutterBottom>
+        <ListItem key={phaseKey}>
+          <ListItemText key={phaseKey}>
+            <Typography gutterBottom>
               1/{phaseKey}:
-              {this.phaseTeams(phases[phaseKey])}
+              {this.phaseTeams(
+                phases[phaseKey],
+                phaseKey,
+                this.props.playoffResults.edges,
+              )}
             </Typography>
           </ListItemText>
         </ListItem>,
@@ -112,12 +126,17 @@ export class PredictionDetails extends React.PureComponent<{}> {
   render() {
     return (
       <div>
-        <Tabs value={this.state.tabIndex} onChange={this.handleTabChange}>
-          <Tab value="0" label="Grupimängud" />
-          <Tab value="1" label="Playoffid" />
+        <Tabs
+          key="tabs"
+          value={this.state.tabIndex}
+          onChange={this.handleTabChange}
+        >
+          <Tab key="0" value="0" label="Grupimängud" />
+          <Tab key="1" value="1" label="Playoffid" />
         </Tabs>
         {this.state.tabIndex === "0" && (
           <List
+            key="groups"
             style={{
               minHeight: "70vh",
               maxHeight: "70vh",
@@ -130,6 +149,7 @@ export class PredictionDetails extends React.PureComponent<{}> {
         )}
         {this.state.tabIndex === "1" && (
           <List
+            key="playoffs"
             style={{
               minHeight: "70vh",
               maxHeight: "70vh",

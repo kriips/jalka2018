@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3394e1475aa537e3fd84827ffa20351d
+ * @relayHash f401e0741deddeeebdf7f479435eabe9
  */
 
 /* eslint-disable */
@@ -13,6 +13,17 @@ export type PredictionQueryVariables = {|
   id: string,
 |};
 export type PredictionQueryResponse = {|
+  +playoffResults: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +phase: ?number,
+        +team: ?{|
+          +name: ?string,
+          +id: string,
+        |},
+      |},
+    |}>,
+  |},
   +user: ?{|
     +id: string,
     +username: ?string,
@@ -49,6 +60,18 @@ export type PredictionQueryResponse = {|
 query PredictionQuery(
   $id: ID!
 ) {
+  playoffResults(first: 1000) {
+    edges {
+      node {
+        phase
+        team {
+          name
+          id
+        }
+        id
+      }
+    }
+  }
   user(id: $id) {
     id
     username
@@ -96,83 +119,104 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "kind": "Literal",
+    "name": "first",
+    "value": 1000,
+    "type": "Int"
   }
 ],
 v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "emojiString",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "phase",
   "args": null,
   "storageKey": null
 },
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "team",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Team",
+  "plural": false,
+  "selections": [
+    v3,
+    v4
+  ]
+},
+v6 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id",
+    "type": "ID!"
+  }
+],
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "prediction",
+  "name": "username",
   "args": null,
   "storageKey": null
 },
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "awayResult",
+  "name": "emojiString",
   "args": null,
   "storageKey": null
 },
 v9 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "prediction",
+  "args": null,
+  "storageKey": null
+},
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "awayResult",
+  "args": null,
+  "storageKey": null
+},
+v11 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "homeResult",
   "args": null,
   "storageKey": null
 },
-v10 = [
-  v5,
-  v4
+v12 = [
+  v8,
+  v3
 ],
-v11 = [
-  v5,
-  v4,
-  v2
+v13 = [
+  v8,
+  v3,
+  v4
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "PredictionQuery",
   "id": null,
-  "text": "query PredictionQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n    username\n    playoffPredictions {\n      team {\n        name\n        emojiString\n        id\n      }\n      phase\n      id\n    }\n    groupPredictions {\n      prediction\n      match {\n        id\n        name\n        awayResult\n        homeResult\n        awayTeam {\n          emojiString\n          name\n          id\n        }\n        homeTeam {\n          emojiString\n          name\n          id\n        }\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query PredictionQuery(\n  $id: ID!\n) {\n  playoffResults(first: 1000) {\n    edges {\n      node {\n        phase\n        team {\n          name\n          id\n        }\n        id\n      }\n    }\n  }\n  user(id: $id) {\n    id\n    username\n    playoffPredictions {\n      team {\n        name\n        emojiString\n        id\n      }\n      phase\n      id\n    }\n    groupPredictions {\n      prediction\n      match {\n        id\n        name\n        awayResult\n        homeResult\n        awayTeam {\n          emojiString\n          name\n          id\n        }\n        homeTeam {\n          emojiString\n          name\n          id\n        }\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -184,14 +228,49 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
+        "name": "playoffResults",
+        "storageKey": "playoffResults(first:1000)",
+        "args": v1,
+        "concreteType": "PlayoffResultConnection",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "edges",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PlayoffResultEdge",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "node",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PlayoffResult",
+                "plural": false,
+                "selections": [
+                  v2,
+                  v5
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
         "name": "user",
         "storageKey": null,
-        "args": v1,
+        "args": v6,
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
-          v3,
+          v4,
+          v7,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -210,11 +289,11 @@ return {
                 "concreteType": "Team",
                 "plural": false,
                 "selections": [
-                  v4,
-                  v5
+                  v3,
+                  v8
                 ]
               },
-              v6
+              v2
             ]
           },
           {
@@ -226,7 +305,7 @@ return {
             "concreteType": "GroupPrediction",
             "plural": true,
             "selections": [
-              v7,
+              v9,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -236,10 +315,10 @@ return {
                 "concreteType": "Match",
                 "plural": false,
                 "selections": [
-                  v2,
                   v4,
-                  v8,
-                  v9,
+                  v3,
+                  v10,
+                  v11,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -248,7 +327,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v10
+                    "selections": v12
                   },
                   {
                     "kind": "LinkedField",
@@ -258,7 +337,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v10
+                    "selections": v12
                   }
                 ]
               }
@@ -276,14 +355,50 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
+        "name": "playoffResults",
+        "storageKey": "playoffResults(first:1000)",
+        "args": v1,
+        "concreteType": "PlayoffResultConnection",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "edges",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PlayoffResultEdge",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "node",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PlayoffResult",
+                "plural": false,
+                "selections": [
+                  v2,
+                  v5,
+                  v4
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
         "name": "user",
         "storageKey": null,
-        "args": v1,
+        "args": v6,
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
-          v3,
+          v4,
+          v7,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -302,13 +417,13 @@ return {
                 "concreteType": "Team",
                 "plural": false,
                 "selections": [
-                  v4,
-                  v5,
-                  v2
+                  v3,
+                  v8,
+                  v4
                 ]
               },
-              v6,
-              v2
+              v2,
+              v4
             ]
           },
           {
@@ -320,7 +435,7 @@ return {
             "concreteType": "GroupPrediction",
             "plural": true,
             "selections": [
-              v7,
+              v9,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -330,10 +445,10 @@ return {
                 "concreteType": "Match",
                 "plural": false,
                 "selections": [
-                  v2,
                   v4,
-                  v8,
-                  v9,
+                  v3,
+                  v10,
+                  v11,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -342,7 +457,7 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v11
+                    "selections": v13
                   },
                   {
                     "kind": "LinkedField",
@@ -352,11 +467,11 @@ return {
                     "args": null,
                     "concreteType": "Team",
                     "plural": false,
-                    "selections": v11
+                    "selections": v13
                   }
                 ]
               },
-              v2
+              v4
             ]
           }
         ]
@@ -365,5 +480,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '32fc784edad1978dd4cbbff904f163f8';
+(node/*: any*/).hash = 'faf2d9cb50bf0b0621ab25c0483e9ba0';
 module.exports = node;

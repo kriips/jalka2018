@@ -12,7 +12,7 @@ defmodule PokedexWeb.Resolvers.PlayoffResultsResolver do
     {:ok, playoff_results}
   end
 
-  def list_playoff_results(args) do
+  def list_playoff_results(args, _) do
     PlayoffResult
     |> Connection.from_query(&Repo.all/1, args)
   end

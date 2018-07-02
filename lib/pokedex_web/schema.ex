@@ -35,6 +35,7 @@ defmodule PokedexWeb.Schema do
     import_fields(:matches)
     import_fields(:group_predictions)
     import_fields(:playoff_predictions)
+    import_fields(:playoff_results)
     import_fields(:relay)
   end
 
