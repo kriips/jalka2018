@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d297dc2fe2f9c231c27a03ab3f09f22e
+ * @relayHash e8dc2e681aeca0d670796b0e976be946
  */
 
 /* eslint-disable */
@@ -9,16 +9,21 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type AddPlayoffPredictionInput = {
+  phase: number,
+  teamId: string,
+};
 export type addPlayoffPredictionMutationVariables = {|
-  input: {
-    phase: number,
-    teamId: string,
-  },
+  input: AddPlayoffPredictionInput
 |};
 export type addPlayoffPredictionMutationResponse = {|
   +addPlayoffPrediction: ?{|
-    +result: ?string,
-  |},
+    +result: ?string
+  |}
+|};
+export type addPlayoffPredictionMutation = {|
+  variables: addPlayoffPredictionMutationVariables,
+  response: addPlayoffPredictionMutationResponse,
 |};
 */
 
@@ -92,5 +97,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'cff1a28ba88dac107b97d64c2276f5c9';
 module.exports = node;

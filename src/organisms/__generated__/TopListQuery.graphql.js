@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c69cd37e542c921a89dca09b1676ebb1
+ * @relayHash e9f32e9f0700d658a6ebf7e8af809dae
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type TopListQueryVariables = {| |};
+export type TopListQueryVariables = {||};
 export type TopListQueryResponse = {|
   +me: ?{|
-    +id: string,
+    +id: string
   |},
   +users: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -21,9 +21,13 @@ export type TopListQueryResponse = {|
         +username: ?string,
         +groupScore: ?number,
         +playoffScore: ?number,
-      |},
-    |}>,
+      |}
+    |}>
   |},
+|};
+export type TopListQuery = {|
+  variables: TopListQueryVariables,
+  response: TopListQueryResponse,
 |};
 */
 
@@ -153,5 +157,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'd5c873d759390781a1438382b7c11f49';
 module.exports = node;

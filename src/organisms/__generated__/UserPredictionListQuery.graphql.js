@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ad1996bfc59b579723e4e985039ba512
+ * @relayHash a6204c54fbd507609069b0cb88708c8b
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type UserPredictionListQueryVariables = {| |};
+export type UserPredictionListQueryVariables = {||};
 export type UserPredictionListQueryResponse = {|
   +me: ?{|
-    +id: string,
+    +id: string
   |},
   +groupPredictions: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -22,8 +22,8 @@ export type UserPredictionListQueryResponse = {|
           +name: ?string,
         |},
         +prediction: ?string,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +matches: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -34,7 +34,7 @@ export type UserPredictionListQueryResponse = {|
         +homeResult: ?number,
         +group: ?string,
         +date: ?{|
-          +iso8601: ?string,
+          +iso8601: ?string
         |},
         +awayTeam: ?{|
           +name: ?string,
@@ -46,9 +46,13 @@ export type UserPredictionListQueryResponse = {|
           +id: string,
           +emojiString: ?string,
         |},
-      |},
-    |}>,
+      |}
+    |}>
   |},
+|};
+export type UserPredictionListQuery = {|
+  variables: UserPredictionListQueryVariables,
+  response: UserPredictionListQueryResponse,
 |};
 */
 
@@ -364,5 +368,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '20898afa0055270a77c5dcda8f1e3c4f';
 module.exports = node;

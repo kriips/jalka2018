@@ -40,7 +40,6 @@ defmodule Pokedex.Mixfile do
       {:phoenix_html, "~> 2.10", override: true},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_relay, "~> 1.4"},
@@ -50,7 +49,8 @@ defmodule Pokedex.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:kronky, "~> 0.5.0"},
-      {:dataloader, "~> 1.0.2"}
+      {:dataloader, "~> 1.0.2"},
+      {:plug_cowboy, "~> 1.0"}
     ]
   end
 

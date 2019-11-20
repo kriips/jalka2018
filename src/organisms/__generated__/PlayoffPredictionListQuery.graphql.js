@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 90d6595969bf419bdd1c7b9523cd073b
+ * @relayHash 7f18b82b8392e250a09f07f4583b41a3
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type PlayoffPredictionListQueryVariables = {| |};
+export type PlayoffPredictionListQueryVariables = {||};
 export type PlayoffPredictionListQueryResponse = {|
   +me: ?{|
-    +id: string,
+    +id: string
   |},
   +teams: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -20,8 +20,8 @@ export type PlayoffPredictionListQueryResponse = {|
         +id: string,
         +name: ?string,
         +emojiString: ?string,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +playoffPredictions: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -31,9 +31,13 @@ export type PlayoffPredictionListQueryResponse = {|
           +id: string,
           +name: ?string,
         |},
-      |},
-    |}>,
+      |}
+    |}>
   |},
+|};
+export type PlayoffPredictionListQuery = {|
+  variables: PlayoffPredictionListQueryVariables,
+  response: PlayoffPredictionListQueryResponse,
 |};
 */
 
@@ -271,5 +275,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'a81c9e100be8d40acb507d3bc8dc2216';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9ebafc006f5dae37386affcedbe2bc94
+ * @relayHash c822fd214380eacd21c573876ed19731
  */
 
 /* eslint-disable */
@@ -9,16 +9,21 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type AddGroupPredictionInput = {
+  matchId: string,
+  prediction: string,
+};
 export type addGroupPredictionMutationVariables = {|
-  input: {
-    matchId: string,
-    prediction: string,
-  },
+  input: AddGroupPredictionInput
 |};
 export type addGroupPredictionMutationResponse = {|
   +addGroupPrediction: ?{|
-    +result: ?string,
-  |},
+    +result: ?string
+  |}
+|};
+export type addGroupPredictionMutation = {|
+  variables: addGroupPredictionMutationVariables,
+  response: addGroupPredictionMutationResponse,
 |};
 */
 
@@ -92,5 +97,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '29a64670b2b2dfa4b4d438040aadc00b';
 module.exports = node;

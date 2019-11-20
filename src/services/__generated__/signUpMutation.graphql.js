@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1b0cebfbc14e7918ec16f11cbaed6b7b
+ * @relayHash 68ef06a772ff3b4fe7ca3df12a00c31d
  */
 
 /* eslint-disable */
@@ -9,18 +9,23 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type RegisterInput = {
+  password: string,
+  username: string,
+};
 export type signUpMutationVariables = {|
-  input: {
-    password: string,
-    username: string,
-  },
+  input: RegisterInput
 |};
 export type signUpMutationResponse = {|
   +register: ?{|
     +user: ?{|
-      +id: string,
-    |},
-  |},
+      +id: string
+    |}
+  |}
+|};
+export type signUpMutation = {|
+  variables: signUpMutationVariables,
+  response: signUpMutationResponse,
 |};
 */
 
@@ -107,5 +112,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'ca6538454503dbe9095f338d7eb62c98';
 module.exports = node;

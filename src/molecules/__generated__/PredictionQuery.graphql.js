@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f401e0741deddeeebdf7f479435eabe9
+ * @relayHash 5a35b403831537104b0cdcb704bcfd21
  */
 
 /* eslint-disable */
@@ -10,7 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type PredictionQueryVariables = {|
-  id: string,
+  id: string
 |};
 export type PredictionQueryResponse = {|
   +playoffResults: ?{|
@@ -21,8 +21,8 @@ export type PredictionQueryResponse = {|
           +name: ?string,
           +id: string,
         |},
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +user: ?{|
     +id: string,
@@ -52,6 +52,10 @@ export type PredictionQueryResponse = {|
       |},
     |}>,
   |},
+|};
+export type PredictionQuery = {|
+  variables: PredictionQueryVariables,
+  response: PredictionQueryResponse,
 |};
 */
 
@@ -480,5 +484,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'faf2d9cb50bf0b0621ab25c0483e9ba0';
 module.exports = node;

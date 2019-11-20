@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 895abc16704b3af1673c225eb4408979
+ * @relayHash a7d2af8b945e745f290d25463dcfaa66
  */
 
 /* eslint-disable */
@@ -9,16 +9,21 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type LoginInput = {
+  password: string,
+  username: string,
+};
 export type signInMutationVariables = {|
-  input: {
-    password: string,
-    username: string,
-  },
+  input: LoginInput
 |};
 export type signInMutationResponse = {|
   +login: ?{|
-    +token: string,
-  |},
+    +token: string
+  |}
+|};
+export type signInMutation = {|
+  variables: signInMutationVariables,
+  response: signInMutationResponse,
 |};
 */
 
@@ -92,5 +97,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'f4baa72e4346be163cb1e50fb1794756';
 module.exports = node;
